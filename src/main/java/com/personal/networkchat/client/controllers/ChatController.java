@@ -58,10 +58,10 @@ public class ChatController implements Initializable {
             return;
         }
         network.sendMessage(message);
-//        addMessage("Me: " + message);
+        addMessage("Me: " + message);
     }
 
-    public void addMessage(String message) {
+    public synchronized void addMessage(String message) {
         chatHistory.appendText(message);
         chatHistory.appendText(System.lineSeparator());
     }
