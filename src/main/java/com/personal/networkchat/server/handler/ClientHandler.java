@@ -81,6 +81,7 @@ public class ClientHandler {
             }
             out.writeUTF(AUTH_SUCCESS_CMD_PREFIX + " | " + fullname);
             serverConfiguration.subscribe(this);
+            System.out.println("User " + fullname + " is connected");
             return true;
         } else {
             out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | login or password incorrect");
@@ -91,8 +92,24 @@ public class ClientHandler {
         return false;
     }
 
-    private void readMessage() {
+    private void readMessage() throws IOException {
+        while (true) {
+            String message = in.readUTF();
+            System.out.println("message | " + fullname + ": " + message);
+            if (message.startsWith(STOP_SERVER_CMD_PREFIX)) {
+                System.exit(1);
+            } else if (message.startsWith(STOP_CLIENT_CMD_PREFIX)) {
+                return;
+            } else if (message.startsWith(PRIVATE_MSG_CMD_PREFIX)) {
+                //TODO
+            } else {
+                serverConfiguration.broadcastMessage(message, this);
+            }
+        }
+    }
 
+    public void sendMessage(String sender, String message) throws IOException {
+        out.writeUTF(String.format("%s %s %s", CLIENT_MSG_CMD_PREFIX, sender, message));
     }
 
     public String getFullname() {

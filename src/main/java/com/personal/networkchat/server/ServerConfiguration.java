@@ -73,4 +73,10 @@ public class ServerConfiguration {
         }
         return false;
     }
+
+    public void broadcastMessage(String message, ClientHandler clientHandler) {
+        for (ClientHandler handler : clientHandlers) {
+
+        }
+    }
 }

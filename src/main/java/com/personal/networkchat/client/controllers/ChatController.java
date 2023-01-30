@@ -39,7 +39,7 @@ public class ChatController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userList.setItems(FXCollections.observableArrayList("Ivan", "Andrew", "Nikolay"));
-        Font mainFont = new Font("Arial", 16);
+        Font mainFont = new Font("Arial", 14);
         chatHistory.setFont(mainFont);
         inputField.setFont(mainFont);
         sendButton.setOnAction(e -> sendMessage());
