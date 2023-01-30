@@ -1,4 +1,4 @@
-package com.personal.networkchat;
+package com.personal.networkchat.client;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,10 +7,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class StartClient extends Application {
+public class ClientApp extends Application {
+
+    //Класс сообщения
+    //* отправитель
+    //* дата отправки
+    //* текст сообщения
+    //
+    //Список<Класс сообщения>
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(StartClient.class.getResource("chat-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ClientApp.class.getResource("chat-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setResizable(false);
         stage.centerOnScreen();

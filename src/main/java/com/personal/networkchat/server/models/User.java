@@ -1,4 +1,4 @@
-package com.personal.networkchat.models;
+package com.personal.networkchat.server.models;
 
 import lombok.Data;
 
