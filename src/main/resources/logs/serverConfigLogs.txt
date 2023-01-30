@@ -1,0 +1,4 @@
+янв. 30, 2023 9:16:02 PM com.personal.networkchat.server.ServerConfiguration start
+INFO: Server started
+янв. 30, 2023 9:16:02 PM com.personal.networkchat.server.ServerConfiguration wainAndProcessNewClientConnection
+WARNING: Waiting for client...

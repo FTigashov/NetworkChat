@@ -1,5 +1,6 @@
 package com.personal.networkchat.client.controllers;
 
+import com.personal.networkchat.client.models.Network;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -42,13 +43,18 @@ public class ChatController implements Initializable {
         sendButton.setOnAction(e -> sendMessage());
     }
 
+    private Network network;
+
+    public void setNetwork(Network network) {
+        this.network = network;
+    }
+
     private void sendMessage() {
         String message = inputField.getText().trim();
+        inputField.clear();
         if (message.isBlank()) {
-            inputField.clear();
             return;
         }
-        inputField.clear();
         addMessage(message);
     }
 

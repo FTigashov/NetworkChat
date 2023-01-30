@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70b33717-d1f7-4eb4-90ab-81d292a5d9de" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/models/Network.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/ServerApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/ServerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/ServerConfiguration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -63,8 +68,8 @@
       <recent name="com.personal.networkchat.client" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientApp">
-    <configuration name="ClientApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.ServerApp">
+    <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.personal.networkchat.client.ClientApp" />
       <module name="NetworkChat" />
       <extension name="coverage">
@@ -105,8 +110,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.ServerApp" />
+        <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
@@ -122,7 +127,7 @@
       <workItem from="1675070874930" duration="2401000" />
       <workItem from="1675081764957" duration="100000" />
       <workItem from="1675081931891" duration="603000" />
-      <workItem from="1675099194597" duration="1106000" />
+      <workItem from="1675099194597" duration="3361000" />
     </task>
     <servers />
   </component>
