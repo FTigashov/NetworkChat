@@ -1,4 +1,4 @@
-package com.personal.networkchat.controllers;
+package com.personal.networkchat.client.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

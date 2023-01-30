@@ -5,6 +5,7 @@ module com.personal.networkchat {
 
 
     opens com.personal.networkchat to javafx.fxml;
-    exports com.personal.networkchat;
-    exports com.personal.networkchat.controllers;
+    exports com.personal.networkchat.client.controllers;
+    exports com.personal.networkchat.client;
+    opens com.personal.networkchat.client to javafx.fxml;
 }
