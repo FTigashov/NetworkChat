@@ -57,7 +57,29 @@ public class Network {
     }
 
     public void waitMessage(ChatController chatController) {
+        Thread thread = new Thread(() ->{
+            try {
+                while (true) {
 
+                    String message = in.readUTF();
+                    chatController.addMessage("Me: " + message);
+                }
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        thread.setDaemon(true);
+        thread.start();
     }
 
+
+    public void sendMessage(String message) {
+        try {
+            out.writeUTF(message);
+        } catch (IOException e) {
+            logger.severe("Failed to send message...");
+            throw new RuntimeException(e);
+        }
+    }
 }

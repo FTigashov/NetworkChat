@@ -1,6 +1,7 @@
 package com.personal.networkchat.server.handler;
 
 import com.personal.networkchat.server.ServerConfiguration;
+import com.personal.networkchat.server.authentication.AuthService;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -18,25 +19,12 @@ public class ClientHandler {
     private static final String STOP_SERVER_CMD_PREFIX = "/stop_server_msg"; // + stop server
     private static final String STOP_CLIENT_CMD_PREFIX = "/stop_client_msg"; // + stop client
 
-    private static final Logger logger;
-    private static final Handler clientLoggerHandler;
-
     private ServerConfiguration serverConfiguration;
     private Socket clientSocket;
     private DataOutputStream out;
     private DataInputStream in;
+    private String fullname;
 
-    static {
-        logger = Logger.getLogger(ServerConfiguration.class.getName());
-        logger.setLevel(Level.ALL);
-        try {
-            clientLoggerHandler = new FileHandler("src/main/resources/logs/clientHandlerLogs.txt");
-            clientLoggerHandler.setFormatter(new SimpleFormatter());
-            logger.addHandler(clientLoggerHandler);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public ClientHandler(ServerConfiguration serverConfiguration, Socket clientSocket) {
         this.serverConfiguration = serverConfiguration;
@@ -52,7 +40,7 @@ public class ClientHandler {
                 authentication();
                 readMessage();
             } catch (IOException e) {
-                logger.severe(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
+//                logger.severe(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
                 e.printStackTrace();
             }
 
@@ -63,15 +51,51 @@ public class ClientHandler {
         while (true) {
             String message = in.readUTF();
             if (message.startsWith(AUTH_CMD_PREFIX)) {
-                out.writeUTF(AUTH_SUCCESS_CMD_PREFIX + " / authentication success");
+                boolean isSuccessAuth = processAuthentication(message);
+                if (isSuccessAuth) {
+//                    logger.info(AUTH_SUCCESS_CMD_PREFIX + " | authentication success");
+                    System.out.println(AUTH_SUCCESS_CMD_PREFIX + " | authentication success");
+                    break;
+                }
             } else {
-                out.writeUTF(AUTH_ERROR_CMD_PREFIX + " / authentication error");
-                logger.severe("Failed authentication attempt");
+                out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | authentication error");
+                System.out.println(AUTH_ERROR_CMD_PREFIX + " | authentication error");
+//                logger.severe("Failed authentication attempt");
             }
         }
     }
 
+    private boolean processAuthentication(String message) throws IOException {
+        String[] parts = message.split("\\s+", 3);
+        if (parts.length != 3) out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | authentication error");
+        String login = parts[1];
+        String password = parts[2];
+
+        AuthService authService = serverConfiguration.getAuthService();
+        authService.startAuthentication();
+        fullname = authService.getUserNameByLoginAndPassword(login, password);
+        if (fullname != null) {
+            if (serverConfiguration.isLoginBusy(fullname)) {
+                out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | user is already busy");
+                return false;
+            }
+            out.writeUTF(AUTH_SUCCESS_CMD_PREFIX + " | " + fullname);
+            serverConfiguration.subscribe(this);
+            return true;
+        } else {
+            out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | login or password incorrect");
+            System.out.println(AUTH_ERROR_CMD_PREFIX + " | login or password incorrect");
+//            logger.info("Incorrect login or password was entered by user " + login);
+        }
+        authService.endAuthentication();
+        return false;
+    }
+
     private void readMessage() {
 
+    }
+
+    public String getFullname() {
+        return fullname;
     }
 }

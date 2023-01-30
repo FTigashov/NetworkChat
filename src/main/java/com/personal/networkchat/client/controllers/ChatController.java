@@ -1,6 +1,7 @@
 package com.personal.networkchat.client.controllers;
 
 import com.personal.networkchat.client.models.Network;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -30,13 +31,14 @@ public class ChatController implements Initializable {
     private Button sendButton;
 
     @FXML
-    private ListView<?> userList;
+    private ListView<String> userList;
 
     @FXML
     private Text userName;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        userList.setItems(FXCollections.observableArrayList("Ivan", "Andrew", "Nikolay"));
         Font mainFont = new Font("Arial", 16);
         chatHistory.setFont(mainFont);
         inputField.setFont(mainFont);
@@ -55,10 +57,11 @@ public class ChatController implements Initializable {
         if (message.isBlank()) {
             return;
         }
-        addMessage(message);
+        network.sendMessage(message);
+//        addMessage(message);
     }
 
-    private void addMessage(String message) {
+    public void addMessage(String message) {
         chatHistory.appendText(message);
         chatHistory.appendText(System.lineSeparator());
     }
