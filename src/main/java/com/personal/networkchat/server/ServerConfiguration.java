@@ -24,11 +24,11 @@ public class ServerConfiguration {
         clientHandlers = new ArrayList<>();
     }
 
-    public void subscribe(ClientHandler clientHandler) {
+    public synchronized void subscribe(ClientHandler clientHandler) {
         clientHandlers.add(clientHandler);
     }
 
-    public void unSubscribe(ClientHandler clientHandler) {
+    public synchronized void unSubscribe(ClientHandler clientHandler) {
         clientHandlers.remove(clientHandler);
     }
 
@@ -65,7 +65,7 @@ public class ServerConfiguration {
         return authService;
     }
 
-    public boolean isLoginBusy(String fullname) {
+    public synchronized boolean isLoginBusy(String fullname) {
         for (ClientHandler clientHandler : clientHandlers) {
             if (clientHandler.getFullname().equals(fullname)) {
                 return true;
@@ -74,9 +74,12 @@ public class ServerConfiguration {
         return false;
     }
 
-    public void broadcastMessage(String message, ClientHandler clientHandler) {
-        for (ClientHandler handler : clientHandlers) {
-
+    public synchronized void broadcastMessage(String message, ClientHandler sender) throws IOException {
+        for (ClientHandler client : clientHandlers) {
+            if (client == sender) {
+                continue;
+            }
+            client.sendMessage(sender.getFullname(), message);
         }
     }
 }
