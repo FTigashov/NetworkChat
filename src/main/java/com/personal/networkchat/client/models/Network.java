@@ -62,7 +62,7 @@ public class Network {
                 while (true) {
 
                     String message = in.readUTF();
-                    chatController.addMessage("Me: " + message);
+                    chatController.addMessage(message);
                 }
             } catch(IOException e) {
                 e.printStackTrace();

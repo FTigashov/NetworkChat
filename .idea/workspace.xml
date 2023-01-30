@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70b33717-d1f7-4eb4-90ab-81d292a5d9de" name="Changes" comment="" />
+    <list default="true" id="70b33717-d1f7-4eb4-90ab-81d292a5d9de" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/models/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/models/Network.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,6 +125,7 @@
       <workItem from="1675081764957" duration="100000" />
       <workItem from="1675081931891" duration="603000" />
       <workItem from="1675099194597" duration="3361000" />
+      <workItem from="1675116297419" duration="1121000" />
     </task>
     <servers />
   </component>

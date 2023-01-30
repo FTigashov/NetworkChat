@@ -58,7 +58,7 @@ public class ChatController implements Initializable {
             return;
         }
         network.sendMessage(message);
-//        addMessage(message);
+//        addMessage("Me: " + message);
     }
 
     public void addMessage(String message) {
