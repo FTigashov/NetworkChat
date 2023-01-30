@@ -19,6 +19,7 @@ public class ServerConfiguration {
         logger.setLevel(Level.ALL);
         try {
             serverLoggerHandler = new FileHandler("src/main/resources/logs/serverConfigLogs.txt");
+            serverLoggerHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(serverLoggerHandler);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -41,7 +42,7 @@ public class ServerConfiguration {
                 wainAndProcessNewClientConnection();
             }
         } catch (IOException e) {
-            logger.severe(e.getMessage());
+            logger.severe(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
             throw new RuntimeException(e);
         }
     }
