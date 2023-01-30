@@ -1,5 +1,7 @@
 package com.personal.networkchat.client.controllers;
 
+import com.personal.networkchat.client.models.Network;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -29,30 +31,37 @@ public class ChatController implements Initializable {
     private Button sendButton;
 
     @FXML
-    private ListView<?> userList;
+    private ListView<String> userList;
 
     @FXML
     private Text userName;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Font mainFont = new Font("Arial", 16);
+        userList.setItems(FXCollections.observableArrayList("Ivan", "Andrew", "Nikolay"));
+        Font mainFont = new Font("Arial", 14);
         chatHistory.setFont(mainFont);
         inputField.setFont(mainFont);
         sendButton.setOnAction(e -> sendMessage());
     }
 
-    private void sendMessage() {
-        String message = inputField.getText().trim();
-        if (message.isBlank()) {
-            inputField.clear();
-            return;
-        }
-        inputField.clear();
-        addMessage(message);
+    private Network network;
+
+    public void setNetwork(Network network) {
+        this.network = network;
     }
 
-    private void addMessage(String message) {
+    private void sendMessage() {
+        String message = inputField.getText().trim();
+        inputField.clear();
+        if (message.isBlank()) {
+            return;
+        }
+        network.sendMessage(message);
+//        addMessage("Me: " + message);
+    }
+
+    public void addMessage(String message) {
         chatHistory.appendText(message);
         chatHistory.appendText(System.lineSeparator());
     }
