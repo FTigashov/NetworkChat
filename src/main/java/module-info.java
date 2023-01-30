@@ -2,6 +2,7 @@ module com.personal.networkchat {
     requires javafx.controls;
     requires javafx.fxml;
     requires lombok;
+    requires java.logging;
 
 
     opens com.personal.networkchat to javafx.fxml;
