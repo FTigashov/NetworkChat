@@ -18,7 +18,7 @@ public class ClientApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ClientApp.class.getResource("chat-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ClientApp.class.getResource("/com/personal/networkchat/chat-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setResizable(false);
         stage.centerOnScreen();

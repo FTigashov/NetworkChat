@@ -8,4 +8,5 @@ module com.personal.networkchat {
     exports com.personal.networkchat.client.controllers;
     exports com.personal.networkchat.client;
     opens com.personal.networkchat.client to javafx.fxml;
+    opens com.personal.networkchat.client.controllers to javafx.fxml;
 }
