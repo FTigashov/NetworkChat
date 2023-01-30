@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70b33717-d1f7-4eb4-90ab-81d292a5d9de" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +53,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Test">
     <configuration name="StartClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.personal.networkchat.StartClient" />
       <module name="NetworkChat" />
@@ -69,8 +67,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.personal.networkchat.models.Test" />
+      <module name="NetworkChat" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.personal.networkchat.models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.StartClient" />
       </list>
     </recent_temporary>
@@ -84,6 +96,8 @@
       <option name="presentableId" value="Default" />
       <updated>1675070873567</updated>
       <workItem from="1675070874930" duration="2401000" />
+      <workItem from="1675081764957" duration="100000" />
+      <workItem from="1675081931891" duration="603000" />
     </task>
     <servers />
   </component>
