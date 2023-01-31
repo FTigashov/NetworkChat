@@ -55,12 +55,10 @@ public class ClientHandler extends LoggingConfig {
                 if (isSuccessAuth) {
                     admin.info(AUTH_SUCCESS_CMD_PREFIX + " | authentication success");
                     admin_console.info(AUTH_SUCCESS_CMD_PREFIX + " | authentication success");
-//                    System.out.println(AUTH_SUCCESS_CMD_PREFIX + " | authentication success");
                     break;
                 }
             } else {
                 out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | authentication error");
-//                System.out.println(AUTH_ERROR_CMD_PREFIX + " | authentication error");
                 admin.fatal("Failed authentication attempt");
                 admin_console.fatal("Failed authentication attempt");
             }
