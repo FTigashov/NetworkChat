@@ -13,6 +13,8 @@ Test.java
 *.iws
 *.iml
 *.ipr
+.log
+log4j.properties
 
 ### Eclipse ###
 .apt_generated

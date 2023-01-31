@@ -18,20 +18,6 @@ public class Network {
     private DataInputStream in;
     private DataOutputStream out;
 
-    private static final Logger logger;
-    private static final Handler serverLoggerHandler;
-
-    static {
-        logger = Logger.getLogger(ServerConfiguration.class.getName());
-        logger.setLevel(Level.ALL);
-        try {
-            serverLoggerHandler = new FileHandler("src/main/resources/logs/clientConnectionLogs.txt");
-            serverLoggerHandler.setFormatter(new SimpleFormatter());
-            logger.addHandler(serverLoggerHandler);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public Network() {
         this.host = DEFAULT_HOST;
@@ -50,7 +36,7 @@ public class Network {
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
         } catch (IOException e) {
-            logger.severe("Failed connection...");
+//            logger.severe("Failed connection...");
             throw new RuntimeException(e);
         }
 
@@ -78,7 +64,7 @@ public class Network {
         try {
             out.writeUTF(message);
         } catch (IOException e) {
-            logger.severe("Failed to send message...");
+//            logger.severe("Failed to send message...");
             throw new RuntimeException(e);
         }
     }

@@ -1,13 +1,14 @@
 package com.personal.networkchat.server.authentication;
 
 import com.personal.networkchat.server.ServerConfiguration;
+import com.personal.networkchat.server.handler.LoggingConfig;
 import com.personal.networkchat.server.models.User;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.*;
 
-public class BaseAuthentication implements AuthService {
+public class BaseAuthentication extends LoggingConfig implements AuthService {
 
 
     private static final List<User> users = List.of(
@@ -28,13 +29,15 @@ public class BaseAuthentication implements AuthService {
 
     @Override
     public void startAuthentication() {
-//        logger.info("Authentication is started");
-        System.out.println("auth is started");
+        admin.info("Authentication is started");
+        admin_console.info("Authentication is started");
+//        System.out.println("auth is started");
     }
 
     @Override
     public void endAuthentication() {
-//        logger.info("End of authentication");
-        System.out.println("auth is ended");
+        admin.info("End of authentication");
+        admin_console.info("End of authentication");
+//        System.out.println("auth is ended");
     }
 }

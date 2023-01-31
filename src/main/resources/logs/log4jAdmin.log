@@ -1,0 +1,46 @@
+2023-01-31 14:35:09 INFO   admin:40 - Server started
+2023-01-31 14:35:09 INFO   admin:54 - Waiting for client...
+2023-01-31 14:35:19 INFO   admin:57 - Client is connected
+2023-01-31 14:35:19 INFO   admin:54 - Waiting for client...
+2023-01-31 14:35:26 INFO   admin:32 - Authentication is started
+2023-01-31 14:35:26 INFO   admin:86 - User Ivan Ivanov is connected
+2023-01-31 14:35:26 INFO   admin:39 - End of authentication
+2023-01-31 14:35:26 INFO   admin:56 - /auth_success | authentication success
+2023-01-31 14:36:03 FATAL  admin:42 - class java.net.SocketException null Connection reset
+2023-01-31 14:36:48 INFO   admin:57 - Client is connected
+2023-01-31 14:36:48 INFO   admin:54 - Waiting for client...
+2023-01-31 14:36:53 FATAL  admin:42 - class java.net.SocketException null Connection reset
+2023-01-31 14:37:06 INFO   admin:40 - Server started
+2023-01-31 14:37:06 INFO   admin:54 - Waiting for client...
+2023-01-31 14:37:12 INFO   admin:57 - Client is connected
+2023-01-31 14:37:12 INFO   admin:54 - Waiting for client...
+2023-01-31 14:37:17 FATAL  admin:64 - Failed authentication attempt
+2023-01-31 14:37:24 INFO   admin:32 - Authentication is started
+2023-01-31 14:37:24 INFO   admin:86 - User Ivan Ivanov is connected
+2023-01-31 14:37:24 INFO   admin:39 - End of authentication
+2023-01-31 14:37:24 INFO   admin:56 - /auth_success | authentication success
+2023-01-31 14:37:31 INFO   admin:104 - message from Ivan Ivanov: Hello world!
+2023-01-31 14:38:18 INFO   admin:40 - Server started
+2023-01-31 14:38:18 INFO   admin:54 - Waiting for client...
+2023-01-31 14:38:24 INFO   admin:57 - Client is connected
+2023-01-31 14:38:24 INFO   admin:54 - Waiting for client...
+2023-01-31 14:38:33 INFO   admin:32 - Authentication is started
+2023-01-31 14:38:33 INFO   admin:86 - User Andrew Vasyliev is connected
+2023-01-31 14:38:33 INFO   admin:39 - End of authentication
+2023-01-31 14:38:33 INFO   admin:56 - /auth_success | authentication success
+2023-01-31 14:38:47 INFO   admin:104 - message from Andrew Vasyliev: hello chat!
+2023-01-31 14:39:02 INFO   admin:104 - message from Andrew Vasyliev: check this out
+2023-01-31 14:39:13 INFO   admin:57 - Client is connected
+2023-01-31 14:39:13 INFO   admin:54 - Waiting for client...
+2023-01-31 14:39:22 INFO   admin:32 - Authentication is started
+2023-01-31 14:39:22 INFO   admin:86 - User Ivan Ivanov is connected
+2023-01-31 14:39:22 INFO   admin:39 - End of authentication
+2023-01-31 14:39:22 INFO   admin:56 - /auth_success | authentication success
+2023-01-31 14:39:39 INFO   admin:104 - message from Andrew Vasyliev: Hello Ivan
+2023-01-31 14:39:46 INFO   admin:104 - message from Ivan Ivanov: Hello Andrew
+2023-01-31 14:39:52 INFO   admin:104 - message from Ivan Ivanov: How a u?
+2023-01-31 14:40:16 INFO   admin:104 - message from Andrew Vasyliev: i'm fine
+2023-01-31 14:40:39 INFO   admin:104 - message from Andrew Vasyliev: /private_message Ivan Ivanov this is a private message
+2023-01-31 14:40:51 INFO   admin:104 - message from Ivan Ivanov: tnx
+2023-01-31 14:41:06 FATAL  admin:42 - class java.net.SocketException null Connection reset
+2023-01-31 14:41:09 FATAL  admin:42 - class java.net.SocketException null Connection reset
