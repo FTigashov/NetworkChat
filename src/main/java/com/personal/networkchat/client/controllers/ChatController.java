@@ -61,7 +61,7 @@ public class ChatController implements Initializable {
 //        addMessage("Me: " + message);
     }
 
-    public void addMessage(String message) {
+    public synchronized void addMessage(String message) {
         chatHistory.appendText(message);
         chatHistory.appendText(System.lineSeparator());
     }
