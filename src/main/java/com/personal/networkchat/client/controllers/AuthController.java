@@ -35,12 +35,12 @@ public class AuthController {
             return;
         }
 
-//        String authErrorMessage = network.sendAuthMessage(login, password);
-//        if (authErrorMessage == null) {
-//            clientApp.openChatDialog();
-//        } else {
-//
-//        }
+        String authErrorMessage = network.sendAuthMessage(login, password);
+        if (authErrorMessage == null) {
+            clientApp.openChatDialog(network.getFullname());
+        } else {
+            showError(ACCOUNT_ERROR);
+        }
     }
 
     @FXML

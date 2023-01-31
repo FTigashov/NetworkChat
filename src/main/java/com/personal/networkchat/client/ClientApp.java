@@ -15,6 +15,7 @@ public class ClientApp extends Application {
     private Network network;
     private Stage primaryStage;
     private Stage authStage;
+    private ChatController chatController;
 
     //Класс сообщения
     //* отправитель
@@ -27,17 +28,16 @@ public class ClientApp extends Application {
     public void start(Stage stage) throws IOException {
         this.primaryStage = stage;
 
-//        network = new Network();
-//        network.connect();
+        network = new Network();
+        network.connect();
 
         openAuthDialog();
-//        createChatDialog();
+        createChatDialog();
 
 
 
 
 
-//        network.waitMessage(chatController);
     }
 
     private void openAuthDialog() throws IOException {
@@ -55,9 +55,9 @@ public class ClientApp extends Application {
         authStage.setTitle("Network chat");
         authStage.show();
 
-//        AuthController authController = authLoader.getController();
-//        authController.setNetwork(network);
-//        authController.setClientApp(this);
+        AuthController authController = authLoader.getController();
+        authController.setNetwork(network);
+        authController.setClientApp(this);
     }
 
     private void createChatDialog() throws IOException {
@@ -69,11 +69,18 @@ public class ClientApp extends Application {
         primaryStage.centerOnScreen();
         primaryStage.setTitle("Network chat");
 
-        ChatController chatController = chatLoader.getController();
+        chatController = chatLoader.getController();
         chatController.setNetwork(network);
     }
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public void openChatDialog(String userFullName) {
+        authStage.close();
+        chatController.setUserFullName(userFullName);
+        network.waitMessage(chatController);
+        primaryStage.show();
     }
 }

@@ -22,6 +22,9 @@ public class ChatController implements Initializable {
     private Menu helpMB;
 
     @FXML
+    private Text userFullName;
+
+    @FXML
     private TextField inputField;
 
     @FXML
@@ -64,5 +67,9 @@ public class ChatController implements Initializable {
     public synchronized void addMessage(String message) {
         chatHistory.appendText(message);
         chatHistory.appendText(System.lineSeparator());
+    }
+
+    public void setUserFullName(String fullName) {
+        userFullName.setText(fullName);
     }
 }
