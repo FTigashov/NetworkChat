@@ -3,6 +3,7 @@ module com.personal.networkchat {
     requires javafx.fxml;
     requires lombok;
     requires java.logging;
+    requires log4j;
 
 
     exports com.personal.networkchat.client.controllers;

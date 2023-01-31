@@ -7,11 +7,15 @@ import com.personal.networkchat.server.handler.ClientHandler;
 import java.io.IOException;
 import java.net.ServerSocket;
 
+import com.personal.networkchat.server.handler.LoggingConfig;
+import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.Logger;
+
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServerConfiguration {
+public class ServerConfiguration extends LoggingConfig {
 
     private final ServerSocket serverSocket;
     private final AuthService authService;
@@ -33,25 +37,25 @@ public class ServerConfiguration {
     }
 
     public void start() {
-//        logger.info("Server started");
-        System.out.println("Server started");
-
+        admin.info("Server started");
+        admin_console.info("Server started");
         try {
             while (true) {
                 wainAndProcessNewClientConnection();
             }
         } catch (IOException e) {
-//            logger.severe(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
+            admin.fatal(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
+            admin_console.fatal(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
             throw new RuntimeException(e);
         }
     }
 
     private void wainAndProcessNewClientConnection() throws IOException {
-//        logger.warning("Waiting for client...");
-        System.out.println("Waiting for client...");
+        admin.info("Waiting for client...");
+        admin_console.info("Waiting for client...");
         Socket socket = serverSocket.accept();
-        System.out.println("Client is connected");
-//        logger.info("Client is connected");
+        admin.info("Client is connected");
+        admin_console.info("Client is connected");
 
         processClientConnection(socket);
     }
