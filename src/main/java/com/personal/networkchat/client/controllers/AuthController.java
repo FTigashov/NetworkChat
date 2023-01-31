@@ -23,9 +23,42 @@ public class AuthController {
     private Network network;
     private ClientApp clientApp;
 
+    private final String EMPTY_FIELDS_ERROR = "emptyFields";
+    private final String ACCOUNT_ERROR = "authError";
+
     @FXML
     void checkAuth(MouseEvent event) {
+        String login = loginField.getText().trim();
+        String password = pwdField.getText().trim();
+        if (login.length() == 0 || password.length() == 0) {
+            showError(EMPTY_FIELDS_ERROR);
+            return;
+        }
 
+//        String authErrorMessage = network.sendAuthMessage(login, password);
+//        if (authErrorMessage == null) {
+//            clientApp.openChatDialog();
+//        } else {
+//
+//        }
+    }
+
+    @FXML
+    void showError(String errorType) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        switch (errorType) {
+            case "emptyFields":
+                alert.setTitle("Authentication error");
+                alert.setHeaderText("Login or password is empty");
+                alert.setContentText("Make sure that all fields must be filled in.");
+                break;
+            case "authError":
+                alert.setTitle("Authentication error");
+                alert.setHeaderText("Incorrect login or password");
+                alert.setContentText("Make sure that your login and password are correct.");
+                break;
+        }
+        alert.show();
     }
 
     @FXML
