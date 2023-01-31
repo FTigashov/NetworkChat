@@ -7,9 +7,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.logging.*;
 
-public class ClientHandler {
+public class ClientHandler extends LoggingConfig {
     private static final String AUTH_CMD_PREFIX = "/auth"; // + login + password
     private static final String AUTH_SUCCESS_CMD_PREFIX = "/auth_success"; // + send username
     private static final String AUTH_ERROR_CMD_PREFIX = "/auth_error"; // + error message
@@ -40,7 +39,8 @@ public class ClientHandler {
                 authentication();
                 readMessage();
             } catch (IOException e) {
-//                logger.severe(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
+                admin.fatal(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
+                admin_console.fatal(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
                 e.printStackTrace();
             }
 
@@ -53,14 +53,16 @@ public class ClientHandler {
             if (message.startsWith(AUTH_CMD_PREFIX)) {
                 boolean isSuccessAuth = processAuthentication(message);
                 if (isSuccessAuth) {
-//                    logger.info(AUTH_SUCCESS_CMD_PREFIX + " | authentication success");
-                    System.out.println(AUTH_SUCCESS_CMD_PREFIX + " | authentication success");
+                    admin.info(AUTH_SUCCESS_CMD_PREFIX + " | authentication success");
+                    admin_console.info(AUTH_SUCCESS_CMD_PREFIX + " | authentication success");
+//                    System.out.println(AUTH_SUCCESS_CMD_PREFIX + " | authentication success");
                     break;
                 }
             } else {
                 out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | authentication error");
-                System.out.println(AUTH_ERROR_CMD_PREFIX + " | authentication error");
-//                logger.severe("Failed authentication attempt");
+//                System.out.println(AUTH_ERROR_CMD_PREFIX + " | authentication error");
+                admin.fatal("Failed authentication attempt");
+                admin_console.fatal("Failed authentication attempt");
             }
         }
     }
@@ -81,28 +83,32 @@ public class ClientHandler {
             }
             out.writeUTF(AUTH_SUCCESS_CMD_PREFIX + " | " + fullname);
             serverConfiguration.subscribe(this);
-            System.out.println("User " + fullname + " is connected");
+            admin.info("User " + fullname + " is connected");
+            admin_console.info("User " + fullname + " is connected");
+//            System.out.println("User " + fullname + " is connected");
+            authService.endAuthentication();
             return true;
         } else {
             out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | login or password incorrect");
-            System.out.println(AUTH_ERROR_CMD_PREFIX + " | login or password incorrect");
-//            logger.info("Incorrect login or password was entered by user " + login);
+//            System.out.println(AUTH_ERROR_CMD_PREFIX + " | login or password incorrect");
+            admin.error("Incorrect login or password was entered by user " + login);
+            admin_console.error("Incorrect login or password was entered by user " + login);
         }
-        authService.endAuthentication();
         return false;
     }
 
     private void readMessage() throws IOException {
         while (true) {
             String message = in.readUTF();
-            System.out.println("message | " + fullname + ": " + message);
+//            System.out.println("message from " + fullname + ": " + message);
+            admin.info("message from " + fullname + ": " + message);
+            admin_console.info("message from " + fullname + ": " + message);
             if (message.startsWith(STOP_SERVER_CMD_PREFIX)) {
                 System.exit(1);
             } else if (message.startsWith(STOP_CLIENT_CMD_PREFIX)) {
                 return;
             } else if (message.startsWith(PRIVATE_MSG_CMD_PREFIX)) {
                 String[] msg_parts = message.split(" ", 4);
-                // [0] - index, [1] - name, [2] - surname, [3] - message
                 serverConfiguration.privateMessage(msg_parts[1] + " " + msg_parts[2], msg_parts[3]);
             } else {
                 serverConfiguration.broadcastMessage(message, this);
