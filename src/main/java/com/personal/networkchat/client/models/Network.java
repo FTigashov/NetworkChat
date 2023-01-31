@@ -18,6 +18,9 @@ public class Network {
     private DataInputStream in;
     private DataOutputStream out;
 
+    private static final String AUTH_CMD_PREFIX = "/auth"; // + login + password
+    private static final String AUTH_SUCCESS_CMD_PREFIX = "/auth_success"; // + send username
+    private String fullname;
 
     public Network() {
         this.host = DEFAULT_HOST;
@@ -67,5 +70,25 @@ public class Network {
 //            logger.severe("Failed to send message...");
             throw new RuntimeException(e);
         }
+    }
+
+    public String sendAuthMessage(String login, String password) {
+        try {
+            out.writeUTF(String.format("%s %s %s", AUTH_CMD_PREFIX, login, password));
+            String response = in.readUTF();
+            if (response.startsWith(AUTH_SUCCESS_CMD_PREFIX)) {
+                String[] userName = response.split(" ", 4);
+                String surname = userName[1];
+                String name = userName[2];
+                this.fullname = String.format("%s %s", surname, name);
+                return null;
+            } else return response.split("\\s+", 2)[1];
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getFullname() {
+        return fullname;
     }
 }

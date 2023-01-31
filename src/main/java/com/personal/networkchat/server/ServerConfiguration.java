@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.net.ServerSocket;
 
 import com.personal.networkchat.server.handler.LoggingConfig;
-import org.apache.log4j.PropertyConfigurator;
-import org.apache.log4j.Logger;
 
 import java.net.Socket;
 import java.util.ArrayList;
@@ -78,18 +76,23 @@ public class ServerConfiguration extends LoggingConfig {
         return false;
     }
 
-    public synchronized void privateMessage(String recipient, String message) throws IOException {
+    public synchronized void privateMessage(ClientHandler sender, String recipient, String message) throws IOException {
         for (ClientHandler client : clientHandlers) {
-            if (client.getFullname().equals(recipient)) client.sendPrivateMessage(recipient, message);
+            if (sender.equals(client)) continue;
+            else if (client.getFullname().equals(recipient)) client.sendPrivateMessage(recipient, message);
         }
     }
 
-    public synchronized void broadcastMessage(String message, ClientHandler sender) throws IOException {
+    public synchronized void broadcastMessage(String message, ClientHandler sender, boolean isServerMessage) throws IOException {
         for (ClientHandler client : clientHandlers) {
             if (client == sender) {
                 continue;
             }
-            client.sendMessage(sender.getFullname(), message);
+            client.sendMessage(isServerMessage ? null : sender.getFullname(), message);
         }
+    }
+
+    public synchronized void broadcastMessage(String message, ClientHandler sender) throws IOException {
+        broadcastMessage(message, sender, false);
     }
 }

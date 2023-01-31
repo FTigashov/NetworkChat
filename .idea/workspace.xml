@@ -5,21 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70b33717-d1f7-4eb4-90ab-81d292a5d9de" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/handler/LoggingConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/config/log4j.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/ClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/ChatController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/models/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/models/Network.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/ServerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/ServerConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/authentication/BaseAuthentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/authentication/BaseAuthentication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/handler/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/handler/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/logs/clientConnectionLogs.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/logs/clientConnectionLogs.txt.1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/logs/clientConnectionLogs.txt.2" beforeDir="false" />
-      &gt;&gt;&gt;&gt;&gt;&gt;&gt; remotes/origin/client_config
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/personal/networkchat/chat-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/personal/networkchat/chat-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/logs/log4jAdmin.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logs/log4jAdmin.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +122,7 @@
       <workItem from="1675099194597" duration="3361000" />
       <workItem from="1675116297419" duration="1121000" />
       <workItem from="1675158278300" duration="2202000" />
+      <workItem from="1675193491362" duration="6082000" />
     </task>
     <servers />
   </component>
