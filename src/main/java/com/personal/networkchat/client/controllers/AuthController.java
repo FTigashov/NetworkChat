@@ -2,6 +2,7 @@ package com.personal.networkchat.client.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 public class AuthController {
@@ -16,4 +17,14 @@ public class AuthController {
 
     @FXML
     private Text registerBtn;
+
+    @FXML
+    void checkAuth(MouseEvent event) {
+
+    }
+
+    @FXML
+    void openRegisterView(MouseEvent event) {
+
+    }
 }

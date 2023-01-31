@@ -85,12 +85,11 @@ public class ClientHandler extends LoggingConfig {
             serverConfiguration.subscribe(this);
             admin.info("User " + fullname + " is connected");
             admin_console.info("User " + fullname + " is connected");
-//            System.out.println("User " + fullname + " is connected");
+            serverConfiguration.broadcastMessage(String.format("%s has connected to the chat", fullname), this, true);
             authService.endAuthentication();
             return true;
         } else {
             out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | login or password incorrect");
-//            System.out.println(AUTH_ERROR_CMD_PREFIX + " | login or password incorrect");
             admin.error("Incorrect login or password was entered by user " + login);
             admin_console.error("Incorrect login or password was entered by user " + login);
         }
@@ -100,7 +99,6 @@ public class ClientHandler extends LoggingConfig {
     private void readMessage() throws IOException {
         while (true) {
             String message = in.readUTF();
-//            System.out.println("message from " + fullname + ": " + message);
             admin.info("message from " + fullname + ": " + message);
             admin_console.info("message from " + fullname + ": " + message);
             if (message.startsWith(STOP_SERVER_CMD_PREFIX)) {
@@ -120,7 +118,8 @@ public class ClientHandler extends LoggingConfig {
     }
 
     public void sendMessage(String sender, String message) throws IOException {
-        out.writeUTF(String.format("%s %s %s", CLIENT_MSG_CMD_PREFIX, sender, message));
+        if (sender != null) out.writeUTF(String.format("%s %s %s", CLIENT_MSG_CMD_PREFIX, sender, message));
+        else out.writeUTF(String.format("%s %s", SERVER_MSG_CMD_PREFIX, message));
     }
 
     public void sendPrivateMessage(String recipient, String message) throws IOException {

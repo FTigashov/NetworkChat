@@ -15,8 +15,8 @@
                 <Font size="18.0" />
             </font>
         </Text>
-        <Button fx:id="authBtn" layoutX="201.0" layoutY="243.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="105.0" text="Войти" />
-        <Text fx:id="registerBtn" fill="#295f92" layoutX="320.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Нет аккаунта..." wrappingWidth="74.22218831380201">
+        <Button fx:id="authBtn" layoutX="201.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#checkAuth" prefHeight="32.0" prefWidth="105.0" text="Войти" />
+        <Text fx:id="registerBtn" fill="#295f92" layoutX="320.0" layoutY="235.0" onMouseClicked="#openRegisterView" strokeType="OUTSIDE" strokeWidth="0.0" text="Нет аккаунта..." wrappingWidth="74.22218831380201">
             <font>
                 <Font size="10.0" />
             </font>
