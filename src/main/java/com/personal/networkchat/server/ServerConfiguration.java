@@ -74,6 +74,12 @@ public class ServerConfiguration {
         return false;
     }
 
+    public synchronized void privateMessage(String recipient, String message) throws IOException {
+        for (ClientHandler client : clientHandlers) {
+            if (client.getFullname().equals(recipient)) client.sendPrivateMessage(recipient, message);
+        }
+    }
+
     public synchronized void broadcastMessage(String message, ClientHandler sender) throws IOException {
         for (ClientHandler client : clientHandlers) {
             if (client == sender) {

@@ -101,7 +101,9 @@ public class ClientHandler {
             } else if (message.startsWith(STOP_CLIENT_CMD_PREFIX)) {
                 return;
             } else if (message.startsWith(PRIVATE_MSG_CMD_PREFIX)) {
-                //TODO
+                String[] msg_parts = message.split(" ", 4);
+                // [0] - index, [1] - name, [2] - surname, [3] - message
+                serverConfiguration.privateMessage(msg_parts[1] + " " + msg_parts[2], msg_parts[3]);
             } else {
                 serverConfiguration.broadcastMessage(message, this);
             }
@@ -110,6 +112,10 @@ public class ClientHandler {
 
     public void sendMessage(String sender, String message) throws IOException {
         out.writeUTF(String.format("%s %s %s", CLIENT_MSG_CMD_PREFIX, sender, message));
+    }
+
+    public void sendPrivateMessage(String recipient, String message) throws IOException {
+        out.writeUTF(String.format("%s %s %s", PRIVATE_MSG_CMD_PREFIX, recipient, message));
     }
 
     public String getFullname() {

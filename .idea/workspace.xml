@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70b33717-d1f7-4eb4-90ab-81d292a5d9de" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/ServerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/ServerConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/handler/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/handler/ClientHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +66,7 @@
       <recent name="com.personal.networkchat.client" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientApp">
+  <component name="RunManager" selected="Application.com.personal.networkchat.server.handler.Test">
     <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.personal.networkchat.client.ClientApp" />
       <module name="NetworkChat" />
@@ -103,10 +106,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="com.personal.networkchat.server.handler.Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.personal.networkchat.server.handler.Test" />
+      <module name="NetworkChat" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.personal.networkchat.server.handler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.ServerApp" />
+        <item itemvalue="Application.com.personal.networkchat.server.handler.Test" />
         <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
@@ -124,6 +141,7 @@
       <workItem from="1675081931891" duration="603000" />
       <workItem from="1675099194597" duration="3361000" />
       <workItem from="1675116297419" duration="1121000" />
+      <workItem from="1675158278300" duration="2202000" />
     </task>
     <servers />
   </component>
