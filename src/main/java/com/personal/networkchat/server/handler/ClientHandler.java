@@ -106,10 +106,13 @@ public class ClientHandler extends LoggingConfig {
             if (message.startsWith(STOP_SERVER_CMD_PREFIX)) {
                 System.exit(1);
             } else if (message.startsWith(STOP_CLIENT_CMD_PREFIX)) {
+                serverConfiguration.unSubscribe(this);
                 return;
             } else if (message.startsWith(PRIVATE_MSG_CMD_PREFIX)) {
-                String[] msg_parts = message.split(" ", 4);
-                serverConfiguration.privateMessage(msg_parts[1] + " " + msg_parts[2], msg_parts[3]);
+                String[] msg_parts = message.split("\\s+", 4);
+                String user_fullname = msg_parts[1] + " " + msg_parts[2];
+                String user_msg = msg_parts[3];
+                serverConfiguration.privateMessage(this, user_fullname, user_msg);
             } else {
                 serverConfiguration.broadcastMessage(message, this);
             }
