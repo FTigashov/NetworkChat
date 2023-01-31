@@ -2,6 +2,7 @@ package com.personal.networkchat.client.models;
 
 import com.personal.networkchat.client.controllers.ChatController;
 import com.personal.networkchat.server.ServerConfiguration;
+import javafx.application.Platform;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -20,6 +21,11 @@ public class Network {
 
     private static final String AUTH_CMD_PREFIX = "/auth"; // + login + password
     private static final String AUTH_SUCCESS_CMD_PREFIX = "/auth_success"; // + send username
+    private static final String CLIENT_MSG_CMD_PREFIX = "/client_msg"; // + client message
+    private static final String SERVER_MSG_CMD_PREFIX = "/server_msg"; // + server message
+    private static final String PRIVATE_MSG_CMD_PREFIX = "/private_msg"; // + private message
+    private static final String STOP_SERVER_CMD_PREFIX = "/stop_server_msg"; // + stop server
+    private static final String STOP_CLIENT_CMD_PREFIX = "/stop_client_msg"; // + stop client
     private String fullname;
 
     public Network() {
@@ -49,9 +55,21 @@ public class Network {
         Thread thread = new Thread(() ->{
             try {
                 while (true) {
-
                     String message = in.readUTF();
-                    chatController.addMessage(message);
+                    if (message.startsWith(CLIENT_MSG_CMD_PREFIX) || message.startsWith(PRIVATE_MSG_CMD_PREFIX)) {
+                        String[] parts = message.split("\\s+", 4);
+                        String sender = parts[1] + " " + parts[2];
+                        String messageFromSender = parts[3];
+
+                        Platform.runLater(() -> chatController.addMessage(String.format("%s: %s", sender, messageFromSender)));
+                    } else if (message.startsWith(SERVER_MSG_CMD_PREFIX)) {
+                        String[] parts = message.split("\\s+", 2);
+                        String serverMessage = parts[1];
+
+                        Platform.runLater(() -> chatController.addServerMessage(serverMessage));
+                    } else {
+//                        Platform.runLater(() -> chatController.showError());
+                    }
                 }
             } catch(IOException e) {
                 e.printStackTrace();
@@ -90,5 +108,10 @@ public class Network {
 
     public String getFullname() {
         return fullname;
+    }
+
+    public void sendPrivateMessage(String selectedRecipient, String message) {
+//        System.out.println(String.format("%s %s %s", PRIVATE_MSG_CMD_PREFIX, selectedRecipient, message));
+        sendMessage(String.format("%s %s %s", PRIVATE_MSG_CMD_PREFIX, selectedRecipient, message));
     }
 }

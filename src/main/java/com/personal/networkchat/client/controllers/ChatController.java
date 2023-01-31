@@ -1,14 +1,18 @@
 package com.personal.networkchat.client.controllers;
 
 import com.personal.networkchat.client.models.Network;
+import com.personal.networkchat.server.models.User;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ChatController implements Initializable {
@@ -36,16 +40,43 @@ public class ChatController implements Initializable {
     @FXML
     private ListView<String> userList;
 
+    private String selectedRecipient;
+
     @FXML
     private Text userName;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        userList.setItems(FXCollections.observableArrayList("Ivan", "Andrew", "Nikolay"));
+        userList.setItems(FXCollections.observableArrayList(
+                "Ivan Ivanov",
+                "Andrew Vasyliev",
+                "John Smith"
+        ));
         Font mainFont = new Font("Arial", 14);
         chatHistory.setFont(mainFont);
         inputField.setFont(mainFont);
         sendButton.setOnAction(e -> sendMessage());
+
+        userList.setCellFactory(lv -> {
+            MultipleSelectionModel<String> selectionModel = userList.getSelectionModel();
+            ListCell<String> cell = new ListCell<>();
+            cell.textProperty().bind(cell.itemProperty());
+            cell.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
+                userList.requestFocus();
+                if (!cell.isEmpty()) {
+                    int index = cell.getIndex();
+                    if (selectionModel.getSelectedIndices().contains(index)) {
+                        selectionModel.clearSelection(index);
+                        selectedRecipient = null;
+                    } else {
+                        selectionModel.select(index);
+                        selectedRecipient = cell.getItem();
+                    }
+                    event.consume();
+                }
+            });
+            return cell;
+        });
     }
 
     private Network network;
@@ -60,16 +91,29 @@ public class ChatController implements Initializable {
         if (message.isBlank()) {
             return;
         }
-        network.sendMessage(message);
-//        addMessage("Me: " + message);
-    }
+        if (selectedRecipient != null) network.sendPrivateMessage(selectedRecipient, message);
+        else network.sendMessage(message);
 
-    public synchronized void addMessage(String message) {
-        chatHistory.appendText(message);
-        chatHistory.appendText(System.lineSeparator());
+        addMessage(String.format("Me: %s", message));
     }
 
     public void setUserFullName(String fullName) {
         userFullName.setText(fullName);
+    }
+
+    public void addMessage(String message) {
+        String timeStamp = DateFormat.getInstance().format(new Date());
+
+        chatHistory.appendText(timeStamp);
+        chatHistory.appendText(System.lineSeparator());
+        chatHistory.appendText(message);
+        chatHistory.appendText(System.lineSeparator());
+        chatHistory.appendText(System.lineSeparator());
+    }
+
+    public void addServerMessage(String serverMessage) {
+        chatHistory.appendText(serverMessage);
+        chatHistory.appendText(System.lineSeparator());
+        chatHistory.appendText(System.lineSeparator());
     }
 }

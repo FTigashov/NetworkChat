@@ -50,7 +50,6 @@ public class ClientApp extends Application {
         authStage.initOwner(primaryStage);
 
         authStage.setResizable(false);
-//        authStage.setAlwaysOnTop(true);
         authStage.centerOnScreen();
         authStage.setTitle("Network chat");
         authStage.show();
@@ -65,7 +64,6 @@ public class ClientApp extends Application {
         Scene chatScene = new Scene(chatLoader.load());
         primaryStage.setScene(chatScene);
         primaryStage.setResizable(false);
-        primaryStage.setAlwaysOnTop(true);
         primaryStage.centerOnScreen();
         primaryStage.setTitle("Network chat");
 

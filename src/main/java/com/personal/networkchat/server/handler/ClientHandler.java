@@ -41,6 +41,7 @@ public class ClientHandler extends LoggingConfig {
             } catch (IOException e) {
                 admin.fatal(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
                 admin_console.fatal(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
+                serverConfiguration.unSubscribe(this);
                 e.printStackTrace();
             }
 
