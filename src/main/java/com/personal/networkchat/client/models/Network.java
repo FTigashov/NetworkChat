@@ -1,14 +1,12 @@
 package com.personal.networkchat.client.models;
 
 import com.personal.networkchat.client.controllers.ChatController;
-import com.personal.networkchat.server.ServerConfiguration;
 import javafx.application.Platform;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.logging.*;
 
 public class Network {
     private final String host;
@@ -26,6 +24,11 @@ public class Network {
     private static final String PRIVATE_MSG_CMD_PREFIX = "/private_msg"; // + private message
     private static final String STOP_SERVER_CMD_PREFIX = "/stop_server_msg"; // + stop server
     private static final String STOP_CLIENT_CMD_PREFIX = "/stop_client_msg"; // + stop client
+    private static final String LIST_OF_CHAT_MEMBERS = "/list_of_chat_members"; // + list of chat members
+
+
+
+
     private String fullname;
 
     public Network() {
@@ -67,6 +70,10 @@ public class Network {
                         String serverMessage = parts[1];
 
                         Platform.runLater(() -> chatController.addServerMessage(serverMessage));
+                    } else if (message.startsWith(LIST_OF_CHAT_MEMBERS)) {
+                        message = message.substring(message.indexOf('[') + 1, message.indexOf(']'));
+                        String[] users = message.split(", ");
+                        Platform.runLater(() -> chatController.refreshChatMembersList(users));
                     } else {
 //                        Platform.runLater(() -> chatController.showError());
                     }
@@ -111,7 +118,6 @@ public class Network {
     }
 
     public void sendPrivateMessage(String selectedRecipient, String message) {
-//        System.out.println(String.format("%s %s %s", PRIVATE_MSG_CMD_PREFIX, selectedRecipient, message));
         sendMessage(String.format("%s %s %s", PRIVATE_MSG_CMD_PREFIX, selectedRecipient, message));
     }
 }

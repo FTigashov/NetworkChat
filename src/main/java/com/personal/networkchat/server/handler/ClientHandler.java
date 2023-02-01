@@ -7,6 +7,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ClientHandler extends LoggingConfig {
     private static final String AUTH_CMD_PREFIX = "/auth"; // + login + password
@@ -17,6 +20,7 @@ public class ClientHandler extends LoggingConfig {
     private static final String PRIVATE_MSG_CMD_PREFIX = "/private_msg"; // + private message
     private static final String STOP_SERVER_CMD_PREFIX = "/stop_server_msg"; // + stop server
     private static final String STOP_CLIENT_CMD_PREFIX = "/stop_client_msg"; // + stop client
+    private static final String LIST_OF_CHAT_MEMBERS = "/list_of_chat_members"; // + list of chat members
 
     private ServerConfiguration serverConfiguration;
     private Socket clientSocket;
@@ -42,6 +46,11 @@ public class ClientHandler extends LoggingConfig {
                 admin.fatal(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
                 admin_console.fatal(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
                 serverConfiguration.unSubscribe(this);
+                try {
+                    serverConfiguration.broadcastDisconnectUser(this);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 e.printStackTrace();
             }
 
@@ -84,6 +93,7 @@ public class ClientHandler extends LoggingConfig {
             serverConfiguration.subscribe(this);
             admin.info("User " + fullname + " is connected");
             admin_console.info("User " + fullname + " is connected");
+            serverConfiguration.sendChatMembersList(this);
             serverConfiguration.broadcastMessage(String.format("%s has connected to the chat", fullname), this, true);
             authService.endAuthentication();
             return true;
@@ -127,5 +137,17 @@ public class ClientHandler extends LoggingConfig {
 
     public String getFullname() {
         return fullname;
+    }
+
+    public void sendListOfChatMembers(List<ClientHandler> clientHandlers) throws IOException {
+        List<String> listOfChatMembers = new ArrayList<>();
+        for (ClientHandler clientHandler : clientHandlers) {
+            listOfChatMembers.add(clientHandler.getFullname());
+        }
+        out.writeUTF(String.format("%s %s", LIST_OF_CHAT_MEMBERS, listOfChatMembers));
+    }
+
+    public void sendServerMessage(String serverMessage) throws IOException {
+        out.writeUTF(String.format("%s %s", SERVER_MSG_CMD_PREFIX, serverMessage));
     }
 }
