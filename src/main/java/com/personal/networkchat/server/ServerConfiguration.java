@@ -95,4 +95,20 @@ public class ServerConfiguration extends LoggingConfig {
     public synchronized void broadcastMessage(String message, ClientHandler sender) throws IOException {
         broadcastMessage(message, sender, false);
     }
+
+    public synchronized void sendChatMembersList(ClientHandler clientHandler) throws IOException {
+        for (ClientHandler client : clientHandlers) {
+            client.sendListOfChatMembers(clientHandlers);
+        }
+    }
+
+    public void broadcastDisconnectUser(ClientHandler clientHandler) throws IOException {
+        for (ClientHandler handler : clientHandlers) {
+            if (handler == clientHandler) continue;
+            else {
+                handler.sendServerMessage(String.format("%s left the chat", clientHandler.getFullname()));
+                handler.sendListOfChatMembers(clientHandlers);
+            }
+        }
+    }
 }

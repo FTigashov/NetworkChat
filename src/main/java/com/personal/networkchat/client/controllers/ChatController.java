@@ -1,7 +1,6 @@
 package com.personal.networkchat.client.controllers;
 
 import com.personal.networkchat.client.models.Network;
-import com.personal.networkchat.server.models.User;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,8 +11,7 @@ import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.text.DateFormat;
-import java.util.Date;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ChatController implements Initializable {
     @FXML
@@ -47,11 +45,12 @@ public class ChatController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        userList.setItems(FXCollections.observableArrayList(
-                "Ivan Ivanov",
-                "Andrew Vasyliev",
-                "John Smith"
-        ));
+//        userList.setItems(FXCollections.observableArrayList(
+//                "Ivan Ivanov",
+//                "Andrew Vasyliev",
+//                "John Smith"
+//        ));
+
         Font mainFont = new Font("Arial", 14);
         chatHistory.setFont(mainFont);
         inputField.setFont(mainFont);
@@ -115,5 +114,14 @@ public class ChatController implements Initializable {
         chatHistory.appendText(serverMessage);
         chatHistory.appendText(System.lineSeparator());
         chatHistory.appendText(System.lineSeparator());
+    }
+
+    public void refreshChatMembersList(String[] users) {
+        Arrays.sort(users);
+//        for (String client : users) {
+//            if (client.equals(network.getFullname())) client = "Me";
+//        }
+        userList.getItems().clear();
+        Collections.addAll(userList.getItems(), users);
     }
 }
