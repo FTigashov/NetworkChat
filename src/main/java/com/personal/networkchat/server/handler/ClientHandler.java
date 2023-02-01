@@ -46,6 +46,8 @@ public class ClientHandler extends LoggingConfig {
                 admin.fatal(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
                 admin_console.fatal(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
                 serverConfiguration.unSubscribe(this);
+                admin.info(String.format("%s left the chat", getFullname()));
+                admin_console.info(String.format("%s left the chat", getFullname()));
                 try {
                     serverConfiguration.broadcastDisconnectUser(this);
                 } catch (IOException ex) {
@@ -86,6 +88,8 @@ public class ClientHandler extends LoggingConfig {
         fullname = authService.getUserNameByLoginAndPassword(login, password);
         if (fullname != null) {
             if (serverConfiguration.isLoginBusy(fullname)) {
+                admin.error("Attempt to log in to an already authorized account");
+                admin_console.error("Attempt to log in to an already authorized account");
                 out.writeUTF(AUTH_ERROR_CMD_PREFIX + " user is already busy");
                 return false;
             }

@@ -661,3 +661,24 @@
 2023-02-01 15:06:12 FATAL  admin:46 - class java.net.SocketException null Connection reset
 2023-02-01 15:06:23 FATAL  admin:46 - class java.net.SocketException null Connection reset
 2023-02-01 15:06:32 FATAL  admin:46 - class java.net.SocketException null Connection reset
+2023-02-01 15:10:10 INFO   admin:38 - Server started
+2023-02-01 15:10:10 INFO   admin:52 - Waiting for client...
+2023-02-01 15:10:14 INFO   admin:55 - Client is connected
+2023-02-01 15:10:14 INFO   admin:52 - Waiting for client...
+2023-02-01 15:10:20 INFO   admin:32 - Authentication is started
+2023-02-01 15:10:20 INFO   admin:96 - User Ivan Ivanov is connected
+2023-02-01 15:10:20 INFO   admin:39 - End of authentication
+2023-02-01 15:10:20 INFO   admin:66 - /auth_success | authentication success
+2023-02-01 15:10:33 INFO   admin:113 - message from Ivan Ivanov: some message here
+2023-02-01 15:10:40 FATAL  admin:46 - class java.net.SocketException null Connection reset
+2023-02-01 15:11:56 INFO   admin:38 - Server started
+2023-02-01 15:11:56 INFO   admin:52 - Waiting for client...
+2023-02-01 15:12:11 INFO   admin:55 - Client is connected
+2023-02-01 15:12:11 INFO   admin:52 - Waiting for client...
+2023-02-01 15:12:16 INFO   admin:32 - Authentication is started
+2023-02-01 15:12:16 INFO   admin:98 - User Ivan Ivanov is connected
+2023-02-01 15:12:16 INFO   admin:39 - End of authentication
+2023-02-01 15:12:16 INFO   admin:68 - /auth_success | authentication success
+2023-02-01 15:12:20 INFO   admin:115 - message from Ivan Ivanov: test
+2023-02-01 15:12:22 FATAL  admin:46 - class java.net.SocketException null Connection reset
+2023-02-01 15:12:22 INFO   admin:49 - Ivan Ivanov left the chat
