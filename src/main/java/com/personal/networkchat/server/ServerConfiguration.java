@@ -78,7 +78,8 @@ public class ServerConfiguration extends LoggingConfig {
 
     public synchronized void privateMessage(ClientHandler sender, String recipient, String message) throws IOException {
         for (ClientHandler client : clientHandlers) {
-            if (client.getFullname().equals(recipient)) client.sendPrivateMessage(sender.getFullname(), message);
+            if (client == sender) continue;
+            else if (client.getFullname().equals(recipient)) client.sendPrivateMessage(sender.getFullname(), message);
         }
     }
 
