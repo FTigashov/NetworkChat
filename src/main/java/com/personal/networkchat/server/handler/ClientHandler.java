@@ -77,7 +77,7 @@ public class ClientHandler extends LoggingConfig {
         fullname = authService.getUserNameByLoginAndPassword(login, password);
         if (fullname != null) {
             if (serverConfiguration.isLoginBusy(fullname)) {
-                out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | user is already busy");
+                out.writeUTF(AUTH_ERROR_CMD_PREFIX + " user is already busy");
                 return false;
             }
             out.writeUTF(AUTH_SUCCESS_CMD_PREFIX + " " + fullname);

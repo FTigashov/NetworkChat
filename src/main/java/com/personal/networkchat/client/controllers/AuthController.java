@@ -25,6 +25,7 @@ public class AuthController {
 
     private final String EMPTY_FIELDS_ERROR = "emptyFields";
     private final String ACCOUNT_ERROR = "authError";
+    private final String USER_IS_BUSY = "user_is_busy";
 
     @FXML
     void checkAuth(MouseEvent event) {
@@ -36,26 +37,34 @@ public class AuthController {
         }
 
         String authErrorMessage = network.sendAuthMessage(login, password);
+
         if (authErrorMessage == null) {
             clientApp.openChatDialog(network.getFullname());
         } else {
-            showError(ACCOUNT_ERROR);
+            if (authErrorMessage.equals("user is already busy")) {
+                showError(USER_IS_BUSY);
+            } else {
+                showError(ACCOUNT_ERROR);
+            }
         }
     }
 
     @FXML
     void showError(String errorType) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Authentication error");
         switch (errorType) {
             case "emptyFields":
-                alert.setTitle("Authentication error");
                 alert.setHeaderText("Login or password is empty");
                 alert.setContentText("Make sure that all fields must be filled in.");
                 break;
             case "authError":
-                alert.setTitle("Authentication error");
                 alert.setHeaderText("Incorrect login or password");
                 alert.setContentText("Make sure that your login and password are correct.");
+                break;
+            case "user_is_busy":
+                alert.setHeaderText("This user has already logged in to the chat");
+                alert.setContentText("To continue,\nyou need to log out of the chat,\nor log in to another account.");
                 break;
         }
         alert.show();
