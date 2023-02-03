@@ -39,7 +39,7 @@ public class ServerConfiguration extends LoggingConfig {
         admin_console.info("Server started");
         try {
             while (true) {
-                wainAndProcessNewClientConnection();
+                waitAndProcessNewClientConnection();
             }
         } catch (IOException e) {
             admin.fatal(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
@@ -48,7 +48,7 @@ public class ServerConfiguration extends LoggingConfig {
         }
     }
 
-    private void wainAndProcessNewClientConnection() throws IOException {
+    private void waitAndProcessNewClientConnection() throws IOException {
         admin.info("Waiting for client...");
         admin_console.info("Waiting for client...");
         Socket socket = serverSocket.accept();
