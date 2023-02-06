@@ -755,3 +755,13 @@
 2023-02-06 16:02:28 INFO   admin:53 - Waiting for client...
 2023-02-06 16:03:11 FATAL  admin:46 - class java.net.SocketException null Connection reset
 2023-02-06 16:03:11 INFO   admin:49 - null left the chat
+2023-02-06 16:09:41 INFO   admin:39 - Server started
+2023-02-06 16:09:41 INFO   admin:53 - Waiting for client...
+2023-02-06 16:09:45 INFO   admin:56 - Client is connected
+2023-02-06 16:09:45 INFO   admin:53 - Waiting for client...
+2023-02-06 16:11:11 FATAL  admin:46 - class java.net.SocketException null Connection reset
+2023-02-06 16:11:11 INFO   admin:49 - null left the chat
+2023-02-06 16:11:16 INFO   admin:56 - Client is connected
+2023-02-06 16:11:16 INFO   admin:53 - Waiting for client...
+2023-02-06 16:11:26 FATAL  admin:46 - class java.net.SocketException null Connection reset
+2023-02-06 16:11:26 INFO   admin:49 - null left the chat
