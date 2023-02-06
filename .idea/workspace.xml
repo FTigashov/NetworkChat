@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70b33717-d1f7-4eb4-90ab-81d292a5d9de" name="Changes" comment="" />
+    <list default="true" id="70b33717-d1f7-4eb4-90ab-81d292a5d9de" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/personal/networkchat/auth-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/personal/networkchat/auth-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/personal/networkchat/chat-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/personal/networkchat/chat-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/personal/networkchat/reg-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/personal/networkchat/reg-view.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,7 +131,7 @@
       <workItem from="1675244483472" duration="8923000" />
       <workItem from="1675343165895" duration="5699000" />
       <workItem from="1675683551508" duration="2043000" />
-      <workItem from="1675685614532" duration="538000" />
+      <workItem from="1675685614532" duration="1912000" />
     </task>
     <servers />
   </component>
