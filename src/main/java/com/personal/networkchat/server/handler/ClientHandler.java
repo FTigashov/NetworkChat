@@ -83,11 +83,9 @@ public class ClientHandler extends LoggingConfig {
         String login = parts[1];
         String password = parts[2];
 
-        // TODO
         AuthService authService = serverConfiguration.getAuthService();
         authService.startAuthentication();
         fullname = authService.getUserNameByLoginAndPassword(login, password);
-        // TODO
         if (fullname != null) {
             if (serverConfiguration.isLoginBusy(fullname)) {
                 admin.error("Attempt to log in to an already authorized account");

@@ -7,17 +7,28 @@ public class DBAuthService implements AuthService {
     private static Statement statement;
     private static PreparedStatement preparedStatement;
 
+    private static ResultSet resultSet;
     @Override
     public String getUserNameByLoginAndPassword(String login, String password) {
-//        preparedStatement = connection.prepareStatement("SELECT * FROM ")
-        return null;
+        String passwordDB;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE login = ?");
+            preparedStatement.setString(1, login);
+            resultSet = preparedStatement.executeQuery();
+            passwordDB = resultSet.getString("password");
+            return passwordDB != null && passwordDB.equals(password) ?
+                    String.format("%s %s", resultSet.getString("name"), resultSet.getString("surname")) :
+                    null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void startAuthentication() {
         try {
             Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/databases/mainDB.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/databases/mainDB");
             statement = connection.createStatement();
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -27,7 +38,7 @@ public class DBAuthService implements AuthService {
     @Override
     public void endAuthentication() {
         try {
-            connection.close();
+            if (connection != null) connection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

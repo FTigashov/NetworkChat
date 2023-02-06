@@ -17,7 +17,6 @@ import java.util.List;
 public class ServerConfiguration extends LoggingConfig {
 
     private final ServerSocket serverSocket;
-//    private final AuthService authService;
     private final AuthService authService;
 
     private final List<ClientHandler> clientHandlers;
