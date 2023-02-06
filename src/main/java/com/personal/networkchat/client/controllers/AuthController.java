@@ -2,12 +2,17 @@ package com.personal.networkchat.client.controllers;
 
 import com.personal.networkchat.client.ClientApp;
 import com.personal.networkchat.client.models.Network;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
-public class AuthController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AuthController implements Initializable {
     @FXML
     private Button authBtn;
 
@@ -18,7 +23,7 @@ public class AuthController {
     private TextField pwdField;
 
     @FXML
-    private Text registerBtn;
+    private Hyperlink registerBtn;
 
     private Network network;
     private ClientApp clientApp;
@@ -81,5 +86,21 @@ public class AuthController {
 
     public void setClientApp(ClientApp clientApp) {
         this.clientApp = clientApp;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
+    @FXML
+    void showRegView(ActionEvent event) {
+        clearAllField();
+        clientApp.openRegDialog();
+    }
+
+    private void clearAllField() {
+        loginField.clear();
+        pwdField.clear();
     }
 }

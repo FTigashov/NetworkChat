@@ -17,16 +17,16 @@
          <font>
             <Font size="14.0" />
          </font></TextField>
-        <Text layoutX="202.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registration">
+        <Text layoutX="176.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create new account">
             <font>
                 <Font size="18.0" />
             </font>
         </Text>
-        <Button fx:id="registerButton" layoutX="119.0" layoutY="253.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" text="Sign up">
+        <Button fx:id="registerButton" layoutX="119.0" layoutY="253.0" mnemonicParsing="false" onAction="#startRegistration" prefHeight="32.0" prefWidth="128.0" text="Sign up">
          <font>
             <Font size="14.0" />
          </font></Button>
-        <Button fx:id="cancelButton" layoutX="262.0" layoutY="253.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" text="Cancel">
+        <Button fx:id="cancelButton" layoutX="262.0" layoutY="253.0" mnemonicParsing="false" onAction="#backToAuthFrame" prefHeight="32.0" prefWidth="128.0" text="Cancel">
          <font>
             <Font size="14.0" />
          </font></Button>
