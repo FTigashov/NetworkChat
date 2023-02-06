@@ -2,6 +2,7 @@ package com.personal.networkchat.client;
 
 import com.personal.networkchat.client.controllers.AuthController;
 import com.personal.networkchat.client.controllers.ChatController;
+import com.personal.networkchat.client.controllers.RegistrationController;
 import com.personal.networkchat.client.models.Network;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ public class ClientApp extends Application {
     private Network network;
     private Stage primaryStage;
     private Stage authStage;
+    private Stage regStage;
     private ChatController chatController;
 
     //Класс сообщения
@@ -32,12 +34,8 @@ public class ClientApp extends Application {
         network.connect();
 
         openAuthDialog();
+        createRegDialog();
         createChatDialog();
-
-
-
-
-
     }
 
     private void openAuthDialog() throws IOException {
@@ -71,14 +69,43 @@ public class ClientApp extends Application {
         chatController.setNetwork(network);
     }
 
+    public void createRegDialog() throws IOException {
+        FXMLLoader regLoader = new FXMLLoader(ClientApp.class.getResource("/com/personal/networkchat/reg-view.fxml"));
+        Scene regScene = new Scene(regLoader.load());
+        regStage = new Stage();
+        regStage.setScene(regScene);
+
+        regStage.initModality(Modality.WINDOW_MODAL);
+        regStage.initOwner(primaryStage);
+
+        regStage.setResizable(false);
+        regStage.centerOnScreen();
+        regStage.setTitle("Network chat");
+
+        RegistrationController registrationController = regLoader.getController();
+        registrationController.setNetwork(network);
+        registrationController.setClientApp(this);
+    }
+
     public static void main(String[] args) {
         launch();
     }
 
     public void openChatDialog(String userFullName) {
         authStage.close();
+        regStage.close();
         chatController.setUserFullName(userFullName);
         network.waitMessage(chatController);
         primaryStage.show();
+    }
+
+    public void openRegDialog() {
+        authStage.hide();
+        regStage.show();
+    }
+
+    public void backToAuthDialog() {
+        regStage.hide();
+        authStage.show();
     }
 }

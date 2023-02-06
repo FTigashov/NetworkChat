@@ -8,13 +8,15 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ClientHandler extends LoggingConfig {
     private static final String AUTH_CMD_PREFIX = "/auth"; // + login + password
+    private static final String REG_CMD_PREFIX = "/reg"; // + login + password
     private static final String AUTH_SUCCESS_CMD_PREFIX = "/auth_success"; // + send username
+    private static final String REG_SUCCESS_CMD_PREFIX = "/reg_success"; // + send username
     private static final String AUTH_ERROR_CMD_PREFIX = "/auth_error"; // + error message
+    private static final String REG_ERROR_CMD_PREFIX = "/reg_error"; // + error message
     private static final String CLIENT_MSG_CMD_PREFIX = "/client_msg"; // + client message
     private static final String SERVER_MSG_CMD_PREFIX = "/server_msg"; // + server message
     private static final String PRIVATE_MSG_CMD_PREFIX = "/private_msg"; // + private message
@@ -40,7 +42,7 @@ public class ClientHandler extends LoggingConfig {
 
         new Thread(() -> {
             try {
-                authentication();
+                waitForStartMessage();
                 readMessage();
             } catch (IOException e) {
                 admin.fatal(String.format("%s %s %s", e.getClass(), e.getCause(), e.getMessage()));
@@ -59,7 +61,7 @@ public class ClientHandler extends LoggingConfig {
         }).start();
     }
 
-    private void authentication() throws IOException {
+    private void waitForStartMessage() throws IOException {
         while (true) {
             String message = in.readUTF();
             if (message.startsWith(AUTH_CMD_PREFIX)) {
@@ -68,13 +70,40 @@ public class ClientHandler extends LoggingConfig {
                     admin.info(AUTH_SUCCESS_CMD_PREFIX + " | authentication success");
                     admin_console.info(AUTH_SUCCESS_CMD_PREFIX + " | authentication success");
                     break;
+                } else {
+                    out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | authentication error");
+                    admin.fatal("Failed authentication attempt");
+                    admin_console.fatal("Failed authentication attempt");
                 }
-            } else {
-                out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | authentication error");
-                admin.fatal("Failed authentication attempt");
-                admin_console.fatal("Failed authentication attempt");
+            } else if (message.startsWith(REG_CMD_PREFIX)) {
+                boolean isSuccessReg = processRegistration(message);
             }
         }
+    }
+
+    private boolean processRegistration(String message) throws IOException {
+        String[] parts = message.split("\\s+", 5);
+        if (parts.length != 5) out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | registration error");
+        String name = parts[1];
+        String surname = parts[2];
+        String login = parts[3];
+        String password = parts[4];
+
+        AuthService authService = serverConfiguration.getAuthService();
+        authService.startAuthentication();
+        fullname = authService.registerForNewUser(name, surname, login, password);
+        if (fullname != null) {
+            out.writeUTF(REG_SUCCESS_CMD_PREFIX + " " + fullname);
+            admin.info("New user " + fullname + " is registered ");
+            admin_console.info("New user " + fullname + " is registered ");
+            authService.endAuthentication();
+            return true;
+        } else {
+            out.writeUTF(REG_ERROR_CMD_PREFIX + " this user is already exists");
+            admin.error(String.format("this user %s is already exists", login));
+            admin_console.error(String.format("this user %s is already exists", login));
+        }
+        return false;
     }
 
     private boolean processAuthentication(String message) throws IOException {
@@ -102,7 +131,7 @@ public class ClientHandler extends LoggingConfig {
             authService.endAuthentication();
             return true;
         } else {
-            out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | login or password incorrect");
+            out.writeUTF(REG_ERROR_CMD_PREFIX + " | login or password incorrect");
             admin.error("Incorrect login or password was entered by user " + login);
             admin_console.error("Incorrect login or password was entered by user " + login);
         }
