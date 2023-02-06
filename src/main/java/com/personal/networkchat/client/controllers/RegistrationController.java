@@ -81,7 +81,6 @@ public class RegistrationController {
             regSuccessAlert.showAndWait();
             clientApp.backToAuthDialog();
         } else {
-            System.out.println(regErrorMessage);
             if (regErrorMessage.equals("this user is already exists")) {
                 clearAllField();
                 showError(USER_IS_EXISTS);

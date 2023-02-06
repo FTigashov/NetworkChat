@@ -808,3 +808,16 @@
 2023-02-06 16:56:26 INFO   admin:70 - /auth_success | authentication success
 2023-02-06 16:56:34 FATAL  admin:48 - class java.net.SocketException null Connection reset
 2023-02-06 16:56:34 INFO   admin:51 - Peter Parker left the chat
+2023-02-06 17:04:34 INFO   admin:39 - Server started
+2023-02-06 17:04:34 INFO   admin:53 - Waiting for client...
+2023-02-06 17:04:38 INFO   admin:56 - Client is connected
+2023-02-06 17:04:38 INFO   admin:53 - Waiting for client...
+2023-02-06 17:04:43 INFO   admin:127 - User Ivan Ivanov is connected
+2023-02-06 17:04:43 INFO   admin:70 - /auth_success | authentication success
+2023-02-06 17:04:50 FATAL  admin:48 - class java.net.SocketException null Connection reset
+2023-02-06 17:04:50 INFO   admin:51 - Ivan Ivanov left the chat
+2023-02-06 17:04:54 INFO   admin:56 - Client is connected
+2023-02-06 17:04:54 INFO   admin:53 - Waiting for client...
+2023-02-06 17:05:05 ERROR  admin:103 - this user ivanov is already exists
+2023-02-06 17:05:10 FATAL  admin:48 - class java.net.SocketException null Connection reset
+2023-02-06 17:05:10 INFO   admin:51 - null left the chat
