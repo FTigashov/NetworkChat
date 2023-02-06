@@ -821,3 +821,11 @@
 2023-02-06 17:05:05 ERROR  admin:103 - this user ivanov is already exists
 2023-02-06 17:05:10 FATAL  admin:48 - class java.net.SocketException null Connection reset
 2023-02-06 17:05:10 INFO   admin:51 - null left the chat
+2023-02-06 17:40:37 INFO   admin:53 - Server started
+2023-02-06 17:40:38 INFO   admin:67 - Waiting for client...
+2023-02-06 17:40:46 INFO   admin:70 - Client is connected
+2023-02-06 17:40:46 INFO   admin:67 - Waiting for client...
+2023-02-06 17:40:51 INFO   admin:127 - User Ivan Ivanov is connected
+2023-02-06 17:40:51 INFO   admin:70 - /auth_success | authentication success
+2023-02-06 17:40:54 FATAL  admin:48 - class java.net.SocketException null Connection reset
+2023-02-06 17:40:54 INFO   admin:51 - Ivan Ivanov left the chat
