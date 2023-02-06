@@ -40,4 +40,9 @@ public class BaseAuthentication extends LoggingConfig implements AuthService {
         admin_console.info("End of authentication");
 //        System.out.println("auth is ended");
     }
+
+    @Override
+    public String registerForNewUser(String name, String surname, String login, String password) {
+        return null;
+    }
 }
