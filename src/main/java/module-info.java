@@ -4,6 +4,7 @@ module com.personal.networkchat {
     requires lombok;
     requires java.logging;
     requires log4j;
+    requires java.sql;
 
 
     exports com.personal.networkchat.client.controllers;
