@@ -18,7 +18,9 @@ public class Network {
     private DataOutputStream out;
 
     private static final String AUTH_CMD_PREFIX = "/auth"; // + login + password
+    private static final String REG_CMD_PREFIX = "/reg"; // + login + password
     private static final String AUTH_SUCCESS_CMD_PREFIX = "/auth_success"; // + send username
+    private static final String REG_SUCCESS_CMD_PREFIX = "/reg_success"; // + send username
     private static final String CLIENT_MSG_CMD_PREFIX = "/client_msg"; // + client message
     private static final String SERVER_MSG_CMD_PREFIX = "/server_msg"; // + server message
     private static final String PRIVATE_MSG_CMD_PREFIX = "/private_msg"; // + private message
@@ -108,6 +110,18 @@ public class Network {
                 this.fullname = String.format("%s %s", surname, name);
                 return null;
             } else return response.split("\\s+", 2)[1];
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String sendRegMessage(String name, String surname, String login, String password) {
+        try {
+            String formMessage = String.format("%s %s %s %s %s", REG_CMD_PREFIX, name, surname, login, password);
+            out.writeUTF(formMessage);
+            String response = in.readUTF();
+            if (response.startsWith(REG_SUCCESS_CMD_PREFIX)) return null;
+            else  return response.split("\\s+", 2)[1];
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

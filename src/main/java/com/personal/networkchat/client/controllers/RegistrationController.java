@@ -33,7 +33,7 @@ public class RegistrationController {
 
     private final String EMPTY_FIELDS_ERROR = "emptyFields";
     private final String ACCOUNT_ERROR = "authError";
-    private final String USER_IS_BUSY = "user_is_busy";
+    private final String USER_IS_EXISTS = "this_user_is_already_exists";
 
     public void setNetwork(Network network) {
         this.network = network;
@@ -71,7 +71,24 @@ public class RegistrationController {
             return;
         }
 
-        String regErrorMessage = null;
+        String regErrorMessage = network.sendRegMessage(name, surname, login, password);
+
+        if (regErrorMessage == null) {
+            Alert regSuccessAlert = new Alert(Alert.AlertType.INFORMATION);
+            regSuccessAlert.setTitle("Notification of successful registration");
+            regSuccessAlert.setHeaderText("Registration is success");
+            regSuccessAlert.setContentText("New user is added to system. You can authorize in chat.");
+            regSuccessAlert.showAndWait();
+            clientApp.backToAuthDialog();
+        } else {
+            System.out.println(regErrorMessage);
+            if (regErrorMessage.equals("this user is already exists")) {
+                clearAllField();
+                showError(USER_IS_EXISTS);
+            } else {
+                showError(ACCOUNT_ERROR);
+            }
+        }
     }
 
     @FXML
@@ -83,13 +100,9 @@ public class RegistrationController {
                 alert.setHeaderText("Some of these fields are empty");
                 alert.setContentText("Make sure that all fields must be filled in.");
                 break;
-            case "authError":
-                alert.setHeaderText("Incorrect login or password");
-                alert.setContentText("Make sure that your login and password are correct.");
-                break;
-            case "user_is_busy":
-                alert.setHeaderText("This user has already logged in to the chat");
-                alert.setContentText("To continue,\nyou need to log out of the chat,\nor log in to another account.");
+            case "this_user_is_already_exists":
+                alert.setHeaderText("This user is already exists");
+                alert.setContentText("Try entering other data.");
                 break;
         }
         alert.show();

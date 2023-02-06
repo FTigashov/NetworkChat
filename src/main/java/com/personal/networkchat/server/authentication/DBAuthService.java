@@ -24,6 +24,24 @@ public class DBAuthService implements AuthService {
         }
     }
 
+    public String registerForNewUser(String name, String surname, String login, String password) {
+        String checkIsUserExists = getUserNameByLoginAndPassword(login, password);
+        if (checkIsUserExists == null) {
+            try {
+                preparedStatement = connection.prepareStatement("INSERT INTO users (name, surname, login, password) VALUES (?, ?, ?, ?)");
+                preparedStatement.setString(1, name);
+                preparedStatement.setString(2, surname);
+                preparedStatement.setString(3, login);
+                preparedStatement.setString(4, password);
+                preparedStatement.executeUpdate();
+                return String.format("%s %s", name, surname);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
     @Override
     public void startAuthentication() {
         try {
