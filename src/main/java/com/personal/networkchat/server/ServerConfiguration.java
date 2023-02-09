@@ -19,9 +19,23 @@ public class ServerConfiguration extends LoggingConfig {
     private final ServerSocket serverSocket;
     private final AuthService authService;
 
+    private static final int DEFAULT_PORT = 8186;
+
     private final List<ClientHandler> clientHandlers;
 
-    public ServerConfiguration(int port) throws IOException {
+    private static ServerConfiguration serverConfiguration;
+    public static ServerConfiguration getInstance() {
+        if (serverConfiguration == null) {
+            try {
+                serverConfiguration = new ServerConfiguration(DEFAULT_PORT);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return serverConfiguration;
+    }
+
+    private ServerConfiguration(int port) throws IOException {
         serverSocket = new ServerSocket(port);
         authService = new DBAuthService();
         clientHandlers = new ArrayList<>();
