@@ -882,3 +882,12 @@
 2023-02-09 13:42:06 INFO   admin:51 - John Smith left the chat
 2023-02-09 13:42:06 FATAL  admin:48 - class java.net.SocketException null Connection reset
 2023-02-09 13:42:06 INFO   admin:51 - Peter Parker left the chat
+2023-02-09 17:03:15 INFO   admin:53 - Server started
+2023-02-09 17:03:15 INFO   admin:67 - Waiting for client...
+2023-02-09 17:03:30 INFO   admin:70 - Client is connected
+2023-02-09 17:03:30 INFO   admin:67 - Waiting for client...
+2023-02-09 17:03:37 INFO   admin:127 - User Ivan Ivanov is connected
+2023-02-09 17:03:37 INFO   admin:70 - /auth_success | authentication success
+2023-02-09 17:03:46 INFO   admin:144 - message from Ivan Ivanov: Hello world!
+2023-02-09 17:03:53 FATAL  admin:48 - class java.net.SocketException null Connection reset
+2023-02-09 17:03:53 INFO   admin:51 - Ivan Ivanov left the chat

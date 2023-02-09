@@ -8,7 +8,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Network {
+public class Network implements NetworkModelFunctions {
     private final String host;
     private final int port;
     private final String DEFAULT_HOST = "localhost";

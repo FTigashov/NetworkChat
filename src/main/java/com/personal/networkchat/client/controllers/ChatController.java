@@ -1,7 +1,6 @@
 package com.personal.networkchat.client.controllers;
 
 import com.personal.networkchat.client.models.Network;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +13,7 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.util.*;
 
-public class ChatController implements Initializable {
+public class ChatController implements Initializable, ChatActions {
     @FXML
     private TextArea chatHistory;
 
@@ -80,7 +79,7 @@ public class ChatController implements Initializable {
         this.network = network;
     }
 
-    private void sendMessage() {
+    public void sendMessage() {
         String message = inputField.getText().trim();
         inputField.clear();
         if (message.isBlank()) {

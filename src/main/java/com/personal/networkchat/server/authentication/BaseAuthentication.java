@@ -31,14 +31,12 @@ public class BaseAuthentication extends LoggingConfig implements AuthService {
     public void startAuthentication() {
         admin.info("Authentication is started");
         admin_console.info("Authentication is started");
-//        System.out.println("auth is started");
     }
 
     @Override
     public void endAuthentication() {
         admin.info("End of authentication");
         admin_console.info("End of authentication");
-//        System.out.println("auth is ended");
     }
 
     @Override
