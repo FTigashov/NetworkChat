@@ -2,6 +2,7 @@ package com.personal.networkchat.server;
 
 import com.personal.networkchat.server.authentication.AuthService;
 import com.personal.networkchat.server.authentication.BaseAuthentication;
+import com.personal.networkchat.server.authentication.DBAuthService;
 import com.personal.networkchat.server.handler.ClientHandler;
 
 import java.io.IOException;
@@ -18,11 +19,25 @@ public class ServerConfiguration extends LoggingConfig {
     private final ServerSocket serverSocket;
     private final AuthService authService;
 
+    private static final int DEFAULT_PORT = 8186;
+
     private final List<ClientHandler> clientHandlers;
 
-    public ServerConfiguration(int port) throws IOException {
+    private static ServerConfiguration serverConfiguration;
+    public static ServerConfiguration getInstance() {
+        if (serverConfiguration == null) {
+            try {
+                serverConfiguration = new ServerConfiguration(DEFAULT_PORT);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return serverConfiguration;
+    }
+
+    private ServerConfiguration(int port) throws IOException {
         serverSocket = new ServerSocket(port);
-        authService = new BaseAuthentication();
+        authService = new DBAuthService();
         clientHandlers = new ArrayList<>();
     }
 

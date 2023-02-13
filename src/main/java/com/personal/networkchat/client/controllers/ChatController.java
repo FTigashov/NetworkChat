@@ -1,7 +1,7 @@
 package com.personal.networkchat.client.controllers;
 
 import com.personal.networkchat.client.models.Network;
-import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -13,7 +13,7 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.util.*;
 
-public class ChatController implements Initializable {
+public class ChatController implements Initializable, ChatActions {
     @FXML
     private TextArea chatHistory;
 
@@ -45,11 +45,6 @@ public class ChatController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        userList.setItems(FXCollections.observableArrayList(
-//                "Ivan Ivanov",
-//                "Andrew Vasyliev",
-//                "John Smith"
-//        ));
 
         Font mainFont = new Font("Arial", 14);
         chatHistory.setFont(mainFont);
@@ -84,7 +79,7 @@ public class ChatController implements Initializable {
         this.network = network;
     }
 
-    private void sendMessage() {
+    public void sendMessage() {
         String message = inputField.getText().trim();
         inputField.clear();
         if (message.isBlank()) {
@@ -123,5 +118,29 @@ public class ChatController implements Initializable {
 //        }
         userList.getItems().clear();
         Collections.addAll(userList.getItems(), users);
+    }
+
+    @FXML
+    void closeWindow(ActionEvent event) {
+        Alert exitAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to leave the chat?",
+                ButtonType.YES, ButtonType.CANCEL);
+        exitAlert.setTitle("Warning about exit");
+        exitAlert.setHeaderText("Confirm your action");
+        exitAlert.showAndWait();
+        if (exitAlert.getResult() == ButtonType.YES) {
+            System.exit(0);
+        } else exitAlert.close();
+    }
+
+    @FXML
+    void showInfoAbout(ActionEvent event) {
+        Alert showInfoAlert = new Alert(Alert.AlertType.INFORMATION);
+        showInfoAlert.setTitle("Info about application");
+        showInfoAlert.setHeaderText("Network chat v1.1");
+        showInfoAlert.setContentText("In the latest update, " +
+                "the possibility of registration and authorization " +
+                "using a database has been added,\npassword hashing " +
+                "has also been added\nfor greater security.");
+        showInfoAlert.show();
     }
 }
