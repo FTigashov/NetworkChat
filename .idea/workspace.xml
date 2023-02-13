@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70b33717-d1f7-4eb4-90ab-81d292a5d9de" name="Changes" comment="" />
+    <list default="true" id="70b33717-d1f7-4eb4-90ab-81d292a5d9de" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/AuthenticationProcess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/authentication/BaseAuthentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/authentication/BaseAuthentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/personal/networkchat/auth-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/personal/networkchat/auth-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/personal/networkchat/reg-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/personal/networkchat/reg-view.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

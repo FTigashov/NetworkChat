@@ -4,15 +4,10 @@ import com.personal.networkchat.client.ClientApp;
 import com.personal.networkchat.client.models.Network;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class AuthController implements Initializable {
+public class AuthController implements AuthenticationProcess {
     @FXML
     private Button authBtn;
 
@@ -33,7 +28,7 @@ public class AuthController implements Initializable {
     private final String USER_IS_BUSY = "user_is_busy";
 
     @FXML
-    void checkAuth(MouseEvent event) {
+    public void createAuthProcess(MouseEvent event) {
         String login = loginField.getText().trim();
         String password = pwdField.getText().trim();
         if (login.length() == 0 || password.length() == 0) {
@@ -55,7 +50,7 @@ public class AuthController implements Initializable {
     }
 
     @FXML
-    void showError(String errorType) {
+    public void showError(String errorType) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Authentication error");
         switch (errorType) {
@@ -88,10 +83,6 @@ public class AuthController implements Initializable {
         this.clientApp = clientApp;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
 
     @FXML
     void showRegView(ActionEvent event) {
@@ -99,7 +90,7 @@ public class AuthController implements Initializable {
         clientApp.openRegDialog();
     }
 
-    private void clearAllField() {
+    public void clearAllField() {
         loginField.clear();
         pwdField.clear();
     }
