@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70b33717-d1f7-4eb4-90ab-81d292a5d9de" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/63f15aac-6004-4ec7-8d46-6b5dc6357e07.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/ChatActions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/models/NetworkModelFunctions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/logs/log4jAdmin.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logs/log4jAdmin.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/controllers/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/models/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/client/models/Network.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/authentication/BaseAuthentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/personal/networkchat/server/authentication/BaseAuthentication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -130,6 +133,7 @@
       <workItem from="1675683551508" duration="2043000" />
       <workItem from="1675685614532" duration="6023000" />
       <workItem from="1675938787579" duration="311000" />
+      <workItem from="1675947690391" duration="2146000" />
     </task>
     <servers />
   </component>
