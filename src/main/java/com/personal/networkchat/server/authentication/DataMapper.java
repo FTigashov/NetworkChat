@@ -13,20 +13,26 @@ public class DataMapper implements AuthService {
     @Override
     public User getUserNameByLoginAndPassword(String login, String password) {
         String passwordDB;
-        try {
-            preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE login = ?");
-            preparedStatement.setString(1, login);
-            resultSet = preparedStatement.executeQuery();
-            passwordDB = resultSet.getString("password");
-            return passwordDB != null && passwordDB.equals(password) ?
-                    new User(resultSet.getString("name"),
+        User user = IdentityMap.getUser(login, password);
+        if (user == null) {
+            try {
+                preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE login = ?");
+                preparedStatement.setString(1, login);
+                resultSet = preparedStatement.executeQuery();
+                passwordDB = resultSet.getString("password");
+                if (passwordDB != null && passwordDB.equals(password)) {
+                    User uploadedUser = new User(resultSet.getString("name"),
                             resultSet.getString("surname"),
                             login,
-                            password) :
-                    null;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+                            password);
+                    IdentityMap.addUser(login, uploadedUser);
+                    return uploadedUser;
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } else return user;
+        return null;
     }
 
     @Override
