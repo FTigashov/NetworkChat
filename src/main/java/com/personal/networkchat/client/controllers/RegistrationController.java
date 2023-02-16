@@ -58,7 +58,7 @@ public class RegistrationController implements AuthenticationProcess {
     }
 
     @FXML
-    public void createAuthProcess(MouseEvent event) {
+    public void createAuthProcess(ActionEvent event) {
         String name, surname, login, password;
         name = nameField.getText().trim();
         surname = surnameField.getText().trim();

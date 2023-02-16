@@ -91,10 +91,10 @@ public class ClientHandler extends LoggingConfig {
         String password = parts[4];
 
         AuthService authService = serverConfiguration.getAuthService();
-        User newUser = new User(name, surname, login, password);
         authService.startAuthentication();
-        fullname = authService.insertNewUser(newUser);
-        if (fullname != null) {
+        User receivedNewUser = authService.insertNewUser(new User(name, surname, login, password));
+        if (receivedNewUser != null) {
+            fullname = String.format("%s %s", receivedNewUser.getName(), receivedNewUser.getSurname());
             out.writeUTF(REG_SUCCESS_CMD_PREFIX + " " + fullname);
             admin.info("New user " + fullname + " is registered ");
             admin_console.info("New user " + fullname + " is registered ");
@@ -116,8 +116,9 @@ public class ClientHandler extends LoggingConfig {
 
         AuthService authService = serverConfiguration.getAuthService();
         authService.startAuthentication();
-        fullname = authService.getUserNameByLoginAndPassword(login, password);
-        if (fullname != null) {
+        User receivedUser = authService.getUserNameByLoginAndPassword(login, password);
+        if (receivedUser != null) {
+            fullname = String.format("%s %s", receivedUser.getName(), receivedUser.getSurname());
             if (serverConfiguration.isLoginBusy(fullname)) {
                 admin.error("Attempt to log in to an already authorized account");
                 admin_console.error("Attempt to log in to an already authorized account");

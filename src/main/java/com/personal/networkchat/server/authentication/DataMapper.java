@@ -11,7 +11,7 @@ public class DataMapper implements AuthService {
 
     private static ResultSet resultSet;
     @Override
-    public String getUserNameByLoginAndPassword(String login, String password) {
+    public User getUserNameByLoginAndPassword(String login, String password) {
         String passwordDB;
         try {
             preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE login = ?");
@@ -19,24 +19,28 @@ public class DataMapper implements AuthService {
             resultSet = preparedStatement.executeQuery();
             passwordDB = resultSet.getString("password");
             return passwordDB != null && passwordDB.equals(password) ?
-                    String.format("%s %s", resultSet.getString("name"), resultSet.getString("surname")) :
+                    new User(resultSet.getString("name"),
+                            resultSet.getString("surname"),
+                            login,
+                            password) :
                     null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public String insertNewUser(User newUser) {
-        String checkIsUserExists = getUserNameByLoginAndPassword(newUser.getLogin(), newUser.getPassword());
+    @Override
+    public User insertNewUser(User user) {
+        User checkIsUserExists = getUserNameByLoginAndPassword(user.getLogin(), user.getPassword());
         if (checkIsUserExists == null) {
             try {
                 preparedStatement = connection.prepareStatement("INSERT INTO users (name, surname, login, password) VALUES (?, ?, ?, ?)");
-                preparedStatement.setString(1, newUser.getName());
-                preparedStatement.setString(2, newUser.getSurname());
-                preparedStatement.setString(3, newUser.getLogin());
-                preparedStatement.setString(4, newUser.getPassword());
+                preparedStatement.setString(1, user.getName());
+                preparedStatement.setString(2, user.getSurname());
+                preparedStatement.setString(3, user.getLogin());
+                preparedStatement.setString(4, user.getPassword());
                 preparedStatement.executeUpdate();
-                return String.format("%s %s", newUser.getName(), newUser.getSurname());
+                return user;
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
