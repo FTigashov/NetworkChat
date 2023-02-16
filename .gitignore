@@ -10,11 +10,13 @@ Test.java
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea
 *.iws
 *.iml
 *.ipr
 .log
 log4j.properties
+pom.xml
 
 ### Eclipse ###
 .apt_generated
