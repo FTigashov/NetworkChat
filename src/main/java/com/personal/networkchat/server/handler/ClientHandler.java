@@ -2,6 +2,7 @@ package com.personal.networkchat.server.handler;
 
 import com.personal.networkchat.server.ServerConfiguration;
 import com.personal.networkchat.server.authentication.AuthService;
+import com.personal.networkchat.server.models.User;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -90,8 +91,9 @@ public class ClientHandler extends LoggingConfig {
         String password = parts[4];
 
         AuthService authService = serverConfiguration.getAuthService();
+        User newUser = new User(name, surname, login, password);
         authService.startAuthentication();
-        fullname = authService.registerForNewUser(name, surname, login, password);
+        fullname = authService.insertNewUser(newUser);
         if (fullname != null) {
             out.writeUTF(REG_SUCCESS_CMD_PREFIX + " " + fullname);
             admin.info("New user " + fullname + " is registered ");

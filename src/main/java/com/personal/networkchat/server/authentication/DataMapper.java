@@ -1,8 +1,10 @@
 package com.personal.networkchat.server.authentication;
 
+import com.personal.networkchat.server.models.User;
+
 import java.sql.*;
 
-public class DBAuthService implements AuthService {
+public class DataMapper implements AuthService {
     private static Connection connection;
     private static Statement statement;
     private static PreparedStatement preparedStatement;
@@ -24,17 +26,17 @@ public class DBAuthService implements AuthService {
         }
     }
 
-    public String registerForNewUser(String name, String surname, String login, String password) {
-        String checkIsUserExists = getUserNameByLoginAndPassword(login, password);
+    public String insertNewUser(User newUser) {
+        String checkIsUserExists = getUserNameByLoginAndPassword(newUser.getLogin(), newUser.getPassword());
         if (checkIsUserExists == null) {
             try {
                 preparedStatement = connection.prepareStatement("INSERT INTO users (name, surname, login, password) VALUES (?, ?, ?, ?)");
-                preparedStatement.setString(1, name);
-                preparedStatement.setString(2, surname);
-                preparedStatement.setString(3, login);
-                preparedStatement.setString(4, password);
+                preparedStatement.setString(1, newUser.getName());
+                preparedStatement.setString(2, newUser.getSurname());
+                preparedStatement.setString(3, newUser.getLogin());
+                preparedStatement.setString(4, newUser.getPassword());
                 preparedStatement.executeUpdate();
-                return String.format("%s %s", name, surname);
+                return String.format("%s %s", newUser.getName(), newUser.getSurname());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -60,5 +62,15 @@ public class DBAuthService implements AuthService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public String update(User user) {
+        return null;
+    }
+
+    @Override
+    public String delete(User user) {
+        return null;
     }
 }
