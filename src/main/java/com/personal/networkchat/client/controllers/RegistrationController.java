@@ -8,8 +8,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
-public class RegistrationController {
+public class RegistrationController implements AuthenticationProcess {
     @FXML
     private Button cancelButton;
 
@@ -49,7 +50,7 @@ public class RegistrationController {
         clientApp.backToAuthDialog();
     }
 
-    private void clearAllField() {
+    public void clearAllField() {
         nameField.clear();
         surnameField.clear();
         loginField.clear();
@@ -57,7 +58,7 @@ public class RegistrationController {
     }
 
     @FXML
-    void startRegistration(ActionEvent event) {
+    public void createAuthProcess(MouseEvent event) {
         String name, surname, login, password;
         name = nameField.getText().trim();
         surname = surnameField.getText().trim();
@@ -91,7 +92,7 @@ public class RegistrationController {
     }
 
     @FXML
-    void showError(String errorType) {
+    public void showError(String errorType) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Registration error");
         switch (errorType) {

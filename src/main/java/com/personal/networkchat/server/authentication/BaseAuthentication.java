@@ -1,12 +1,9 @@
 package com.personal.networkchat.server.authentication;
 
-import com.personal.networkchat.server.ServerConfiguration;
 import com.personal.networkchat.server.handler.LoggingConfig;
 import com.personal.networkchat.server.models.User;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.logging.*;
 
 public class BaseAuthentication extends LoggingConfig implements AuthService {
 
