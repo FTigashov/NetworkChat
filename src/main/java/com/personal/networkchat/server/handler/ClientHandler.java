@@ -2,6 +2,7 @@ package com.personal.networkchat.server.handler;
 
 import com.personal.networkchat.server.ServerConfiguration;
 import com.personal.networkchat.server.authentication.AuthService;
+import com.personal.networkchat.server.models.User;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -91,8 +92,9 @@ public class ClientHandler extends LoggingConfig {
 
         AuthService authService = serverConfiguration.getAuthService();
         authService.startAuthentication();
-        fullname = authService.registerForNewUser(name, surname, login, password);
-        if (fullname != null) {
+        User receivedNewUser = authService.insertNewUser(new User(name, surname, login, password));
+        if (receivedNewUser != null) {
+            fullname = String.format("%s %s", receivedNewUser.getName(), receivedNewUser.getSurname());
             out.writeUTF(REG_SUCCESS_CMD_PREFIX + " " + fullname);
             admin.info("New user " + fullname + " is registered ");
             admin_console.info("New user " + fullname + " is registered ");
@@ -114,8 +116,9 @@ public class ClientHandler extends LoggingConfig {
 
         AuthService authService = serverConfiguration.getAuthService();
         authService.startAuthentication();
-        fullname = authService.getUserNameByLoginAndPassword(login, password);
-        if (fullname != null) {
+        User receivedUser = authService.getUserNameByLoginAndPassword(login, password);
+        if (receivedUser != null) {
+            fullname = String.format("%s %s", receivedUser.getName(), receivedUser.getSurname());
             if (serverConfiguration.isLoginBusy(fullname)) {
                 admin.error("Attempt to log in to an already authorized account");
                 admin_console.error("Attempt to log in to an already authorized account");

@@ -1,9 +1,12 @@
 package com.personal.networkchat.server.authentication;
 
+import com.personal.networkchat.server.models.User;
+
 public interface AuthService {
-    String getUserNameByLoginAndPassword(String login, String password);
+    User getUserNameByLoginAndPassword(String login, String password);
+    User insertNewUser(User user);
     void startAuthentication();
     void endAuthentication();
-
-    String registerForNewUser(String name, String surname, String login, String password);
+    String update(User user);
+    String delete(User user);
 }

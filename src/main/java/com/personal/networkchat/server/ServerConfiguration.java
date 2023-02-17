@@ -1,8 +1,7 @@
 package com.personal.networkchat.server;
 
 import com.personal.networkchat.server.authentication.AuthService;
-import com.personal.networkchat.server.authentication.BaseAuthentication;
-import com.personal.networkchat.server.authentication.DBAuthService;
+import com.personal.networkchat.server.authentication.DataMapper;
 import com.personal.networkchat.server.handler.ClientHandler;
 
 import java.io.IOException;
@@ -37,7 +36,7 @@ public class ServerConfiguration extends LoggingConfig {
 
     private ServerConfiguration(int port) throws IOException {
         serverSocket = new ServerSocket(port);
-        authService = new DBAuthService();
+        authService = new DataMapper();
         clientHandlers = new ArrayList<>();
     }
 

@@ -899,3 +899,119 @@
 2023-02-13 13:06:37 INFO   admin:70 - /auth_success | authentication success
 2023-02-13 13:06:44 FATAL  admin:48 - class java.net.SocketException null Connection reset
 2023-02-13 13:06:44 INFO   admin:51 - Ivan Ivanov left the chat
+2023-02-16 12:24:44 INFO   admin:53 - Server started
+2023-02-16 12:24:44 INFO   admin:67 - Waiting for client...
+2023-02-16 12:24:50 INFO   admin:70 - Client is connected
+2023-02-16 12:24:50 INFO   admin:67 - Waiting for client...
+2023-02-16 12:24:56 INFO   admin:127 - User Ivan Ivanov is connected
+2023-02-16 12:24:56 INFO   admin:70 - /auth_success | authentication success
+2023-02-16 12:24:58 INFO   admin:144 - message from Ivan Ivanov: teast
+2023-02-16 12:25:04 FATAL  admin:48 - class java.net.SocketException null Connection reset
+2023-02-16 12:25:04 INFO   admin:51 - Ivan Ivanov left the chat
+2023-02-16 13:05:20 INFO   admin:52 - Server started
+2023-02-16 13:05:20 INFO   admin:66 - Waiting for client...
+2023-02-16 13:05:28 INFO   admin:69 - Client is connected
+2023-02-16 13:05:28 INFO   admin:66 - Waiting for client...
+2023-02-16 13:05:33 INFO   admin:130 - User Ivan Ivan is connected
+2023-02-16 13:05:33 INFO   admin:71 - /auth_success | authentication success
+2023-02-16 13:05:40 INFO   admin:69 - Client is connected
+2023-02-16 13:05:40 INFO   admin:66 - Waiting for client...
+2023-02-16 13:06:29 FATAL  admin:49 - class java.net.SocketException null Connection reset
+2023-02-16 13:06:29 INFO   admin:52 - null left the chat
+2023-02-16 13:06:31 FATAL  admin:49 - class java.net.SocketException null Connection reset
+2023-02-16 13:06:31 INFO   admin:52 - Ivan Ivan left the chat
+2023-02-16 13:11:03 INFO   admin:52 - Server started
+2023-02-16 13:11:03 INFO   admin:66 - Waiting for client...
+2023-02-16 13:11:50 INFO   admin:52 - Server started
+2023-02-16 13:11:50 INFO   admin:66 - Waiting for client...
+2023-02-16 13:11:59 INFO   admin:69 - Client is connected
+2023-02-16 13:11:59 INFO   admin:66 - Waiting for client...
+2023-02-16 13:12:38 FATAL  admin:49 - class java.net.SocketException null Connection reset
+2023-02-16 13:12:38 INFO   admin:52 - null left the chat
+2023-02-16 13:13:02 INFO   admin:69 - Client is connected
+2023-02-16 13:13:02 INFO   admin:66 - Waiting for client...
+2023-02-16 13:20:51 INFO   admin:52 - Server started
+2023-02-16 13:20:51 INFO   admin:66 - Waiting for client...
+2023-02-16 13:20:56 INFO   admin:69 - Client is connected
+2023-02-16 13:20:56 INFO   admin:66 - Waiting for client...
+2023-02-16 13:21:22 FATAL  admin:49 - class java.net.SocketException null Connection reset
+2023-02-16 13:21:22 INFO   admin:52 - null left the chat
+2023-02-16 13:21:29 INFO   admin:52 - Server started
+2023-02-16 13:21:29 INFO   admin:66 - Waiting for client...
+2023-02-16 13:21:33 INFO   admin:69 - Client is connected
+2023-02-16 13:21:33 INFO   admin:66 - Waiting for client...
+2023-02-16 13:21:50 FATAL  admin:49 - class java.net.SocketException null Connection reset
+2023-02-16 13:21:50 INFO   admin:52 - null left the chat
+2023-02-16 13:29:58 INFO   admin:52 - Server started
+2023-02-16 13:29:58 INFO   admin:66 - Waiting for client...
+2023-02-16 13:30:04 INFO   admin:69 - Client is connected
+2023-02-16 13:30:04 INFO   admin:66 - Waiting for client...
+2023-02-16 13:30:29 FATAL  admin:49 - class java.net.SocketException null Connection reset
+2023-02-16 13:30:29 INFO   admin:52 - null left the chat
+2023-02-16 13:34:14 INFO   admin:52 - Server started
+2023-02-16 13:34:14 INFO   admin:66 - Waiting for client...
+2023-02-16 13:34:19 INFO   admin:69 - Client is connected
+2023-02-16 13:34:19 INFO   admin:66 - Waiting for client...
+2023-02-16 13:34:24 INFO   admin:130 - User Ivan Ivan is connected
+2023-02-16 13:34:24 INFO   admin:71 - /auth_success | authentication success
+2023-02-16 13:34:26 FATAL  admin:49 - class java.net.SocketException null Connection reset
+2023-02-16 13:34:26 INFO   admin:52 - Ivan Ivan left the chat
+2023-02-16 13:34:29 INFO   admin:69 - Client is connected
+2023-02-16 13:34:29 INFO   admin:66 - Waiting for client...
+2023-02-16 13:34:41 INFO   admin:99 - New user Darth Vader is registered 
+2023-02-16 13:35:32 INFO   admin:130 - User Darth Darth is connected
+2023-02-16 13:35:32 INFO   admin:71 - /auth_success | authentication success
+2023-02-16 13:35:39 FATAL  admin:49 - class java.net.SocketException null Connection reset
+2023-02-16 13:35:39 INFO   admin:52 - Darth Darth left the chat
+2023-02-16 13:37:43 INFO   admin:52 - Server started
+2023-02-16 13:37:43 INFO   admin:66 - Waiting for client...
+2023-02-16 13:37:47 INFO   admin:69 - Client is connected
+2023-02-16 13:37:47 INFO   admin:66 - Waiting for client...
+2023-02-16 13:37:56 INFO   admin:99 - New user Darth Vader is registered 
+2023-02-16 13:38:08 INFO   admin:130 - User Darth Darth is connected
+2023-02-16 13:38:08 INFO   admin:71 - /auth_success | authentication success
+2023-02-16 13:38:21 FATAL  admin:49 - class java.net.SocketException null Connection reset
+2023-02-16 13:38:21 INFO   admin:52 - Darth Darth left the chat
+2023-02-16 13:41:09 INFO   admin:52 - Server started
+2023-02-16 13:41:09 INFO   admin:66 - Waiting for client...
+2023-02-16 13:41:14 INFO   admin:69 - Client is connected
+2023-02-16 13:41:14 INFO   admin:66 - Waiting for client...
+2023-02-16 13:41:32 INFO   admin:99 - New user Name Surname is registered 
+2023-02-16 13:41:40 INFO   admin:130 - User Name Surname is connected
+2023-02-16 13:41:40 INFO   admin:71 - /auth_success | authentication success
+2023-02-16 13:41:42 FATAL  admin:49 - class java.net.SocketException null Connection reset
+2023-02-16 13:41:42 INFO   admin:52 - Name Surname left the chat
+2023-02-16 14:04:34 INFO   admin:52 - Server started
+2023-02-16 14:04:34 INFO   admin:66 - Waiting for client...
+2023-02-16 14:04:38 INFO   admin:69 - Client is connected
+2023-02-16 14:04:38 INFO   admin:66 - Waiting for client...
+2023-02-16 14:04:44 INFO   admin:130 - User Ivan Ivanov is connected
+2023-02-16 14:04:44 INFO   admin:71 - /auth_success | authentication success
+2023-02-16 14:05:02 INFO   admin:69 - Client is connected
+2023-02-16 14:05:02 INFO   admin:66 - Waiting for client...
+2023-02-16 14:05:04 FATAL  admin:49 - class java.net.SocketException null Connection reset
+2023-02-16 14:05:04 INFO   admin:52 - Ivan Ivanov left the chat
+2023-02-16 14:05:07 INFO   admin:130 - User Ivan Ivanov is connected
+2023-02-16 14:05:07 INFO   admin:71 - /auth_success | authentication success
+2023-02-16 14:05:11 FATAL  admin:49 - class java.net.SocketException null Connection reset
+2023-02-16 14:05:11 INFO   admin:52 - Ivan Ivanov left the chat
+2023-02-16 14:06:56 INFO   admin:52 - Server started
+2023-02-16 14:06:56 INFO   admin:66 - Waiting for client...
+2023-02-16 14:07:13 INFO   admin:69 - Client is connected
+2023-02-16 14:07:14 INFO   admin:66 - Waiting for client...
+2023-02-16 14:07:18 INFO   admin:69 - Client is connected
+2023-02-16 14:07:18 INFO   admin:66 - Waiting for client...
+2023-02-16 14:07:20 INFO   admin:130 - User Ivan Ivanov is connected
+2023-02-16 14:07:20 INFO   admin:71 - /auth_success | authentication success
+2023-02-16 14:07:25 FATAL  admin:49 - class java.net.SocketException null Connection reset
+2023-02-16 14:07:25 INFO   admin:52 - Ivan Ivanov left the chat
+2023-02-16 14:07:28 INFO   admin:130 - User Ivan Ivanov is connected
+2023-02-16 14:07:28 INFO   admin:71 - /auth_success | authentication success
+2023-02-16 14:07:41 INFO   admin:69 - Client is connected
+2023-02-16 14:07:41 INFO   admin:66 - Waiting for client...
+2023-02-16 14:07:47 ERROR  admin:123 - Attempt to log in to an already authorized account
+2023-02-16 14:07:47 FATAL  admin:76 - Failed authentication attempt
+2023-02-16 14:07:50 FATAL  admin:49 - class java.net.SocketException null Connection reset
+2023-02-16 14:07:50 INFO   admin:52 - Ivan Ivanov left the chat
+2023-02-16 14:07:51 FATAL  admin:49 - class java.net.SocketException null Connection reset
+2023-02-16 14:07:51 INFO   admin:52 - Ivan Ivanov left the chat

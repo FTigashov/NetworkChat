@@ -27,8 +27,9 @@ public class AuthController implements AuthenticationProcess {
     private final String ACCOUNT_ERROR = "authError";
     private final String USER_IS_BUSY = "user_is_busy";
 
-    @FXML
-    public void createAuthProcess(MouseEvent event) {
+
+    @Override
+    public void createAuthProcess(ActionEvent event) {
         String login = loginField.getText().trim();
         String password = pwdField.getText().trim();
         if (login.length() == 0 || password.length() == 0) {
