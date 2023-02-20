@@ -36,6 +36,11 @@ log4j.properties
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
+/.mvn/
+mvnw
+mvnw.cmd
+identifier.sqlite
+
 
 ### VS Code ###
 .vscode/
