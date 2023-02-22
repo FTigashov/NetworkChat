@@ -55,7 +55,7 @@ public class DataMapper implements AuthService {
     }
 
     @Override
-    public void startAuthentication() {
+    public void openConnection() {
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:src/main/resources/databases/mainDB");
@@ -66,7 +66,7 @@ public class DataMapper implements AuthService {
     }
 
     @Override
-    public void endAuthentication() {
+    public void closeConnection() {
         try {
             if (connection != null) connection.close();
         } catch (SQLException e) {

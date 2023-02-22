@@ -91,14 +91,14 @@ public class ClientHandler extends LoggingConfig {
         String password = parts[4];
 
         AuthService authService = serverConfiguration.getAuthService();
-        authService.startAuthentication();
+        authService.openConnection();
         User receivedNewUser = authService.insertNewUser(new User(name, surname, login, password));
         if (receivedNewUser != null) {
             fullname = String.format("%s %s", receivedNewUser.getName(), receivedNewUser.getSurname());
             out.writeUTF(REG_SUCCESS_CMD_PREFIX + " " + fullname);
             admin.info("New user " + fullname + " is registered ");
             admin_console.info("New user " + fullname + " is registered ");
-            authService.endAuthentication();
+            authService.closeConnection();
             return true;
         } else {
             out.writeUTF(REG_ERROR_CMD_PREFIX + " this user is already exists");
@@ -115,7 +115,7 @@ public class ClientHandler extends LoggingConfig {
         String password = parts[2];
 
         AuthService authService = serverConfiguration.getAuthService();
-        authService.startAuthentication();
+        authService.openConnection();
         User receivedUser = authService.getUserNameByLoginAndPassword(login, password);
         if (receivedUser != null) {
             fullname = String.format("%s %s", receivedUser.getName(), receivedUser.getSurname());
@@ -131,7 +131,7 @@ public class ClientHandler extends LoggingConfig {
             admin_console.info("User " + fullname + " is connected");
             serverConfiguration.sendChatMembersList(this);
             serverConfiguration.broadcastMessage(String.format("%s has connected to the chat", fullname), this, true);
-            authService.endAuthentication();
+            authService.closeConnection();
             return true;
         } else {
             out.writeUTF(REG_ERROR_CMD_PREFIX + " | login or password incorrect");
