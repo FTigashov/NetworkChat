@@ -80,8 +80,8 @@ public class ClientHandler extends LoggingConfig {
             } else if (message.startsWith(REG_CMD_PREFIX)) {
                 boolean isSuccessReg = processRegistration(message);
                 if (isSuccessReg) {
-                    admin.info("New user " + fullname + " is registered ");
-                    admin_console.info("New user " + fullname + " is registered ");
+                    admin.info("New user is registered ");
+                    admin_console.info("New user is registered ");
                     break;
                 } else {
                     out.writeUTF(REG_ERROR_CMD_PREFIX + " this user is already exists");
@@ -102,12 +102,13 @@ public class ClientHandler extends LoggingConfig {
         String login = parts[3];
         String password = parts[4];
 
-        authService.startAuthentication();
+        authService.openConnection();
+        
         User receivedNewUser = authService.insertNewUser(new User(name, surname, login, password));
         if (receivedNewUser != null) {
             fullname = String.format("%s %s", receivedNewUser.getName(), receivedNewUser.getSurname());
             out.writeUTF(REG_SUCCESS_CMD_PREFIX + " " + fullname);
-            authService.endAuthentication();
+            authService.closeConnection();
             return true;
         }
         return false;
@@ -120,7 +121,7 @@ public class ClientHandler extends LoggingConfig {
         String login = parts[1];
         String password = parts[2];
 
-        authService.startAuthentication();
+        authService.openConnection();
         User receivedUser = authService.getUserNameByLoginAndPassword(login, password);
         if (receivedUser != null) {
             fullname = String.format("%s %s", receivedUser.getName(), receivedUser.getSurname());
@@ -136,7 +137,7 @@ public class ClientHandler extends LoggingConfig {
             admin_console.info("User " + fullname + " is connected");
             serverConfiguration.sendChatMembersList(this);
             serverConfiguration.broadcastMessage(String.format("%s has connected to the chat", fullname), this, true);
-            authService.endAuthentication();
+            authService.closeConnection();
             return true;
         } else {
             out.writeUTF(REG_ERROR_CMD_PREFIX + " | login or password incorrect");
