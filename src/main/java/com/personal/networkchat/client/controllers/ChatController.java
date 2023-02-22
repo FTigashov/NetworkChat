@@ -113,9 +113,6 @@ public class ChatController implements Initializable, ChatActions {
 
     public void refreshChatMembersList(String[] users) {
         Arrays.sort(users);
-//        for (String client : users) {
-//            if (client.equals(network.getFullname())) client = "Me";
-//        }
         userList.getItems().clear();
         Collections.addAll(userList.getItems(), users);
     }

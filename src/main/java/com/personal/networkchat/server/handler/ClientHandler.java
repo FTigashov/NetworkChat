@@ -82,6 +82,8 @@ public class ClientHandler extends LoggingConfig {
         }
     }
 
+
+    // Copy–Paste
     private boolean processRegistration(String message) throws IOException {
         String[] parts = message.split("\\s+", 5);
         if (parts.length != 5) out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | registration error");
@@ -108,6 +110,7 @@ public class ClientHandler extends LoggingConfig {
         return false;
     }
 
+    // Copy–Paste
     private boolean processAuthentication(String message) throws IOException {
         String[] parts = message.split("\\s+", 3);
         if (parts.length != 3) out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | authentication error");

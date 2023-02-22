@@ -118,8 +118,7 @@ public class ServerConfiguration extends LoggingConfig {
 
     public void broadcastDisconnectUser(ClientHandler clientHandler) throws IOException {
         for (ClientHandler handler : clientHandlers) {
-            if (handler == clientHandler) continue;
-            else {
+            if (handler != clientHandler) {
                 handler.sendServerMessage(String.format("%s left the chat", clientHandler.getFullname()));
                 handler.sendListOfChatMembers(clientHandlers);
             }
