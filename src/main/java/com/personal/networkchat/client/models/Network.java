@@ -50,7 +50,6 @@ public class Network implements NetworkModelFunctions {
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
         } catch (IOException e) {
-//            logger.severe("Failed connection...");
             throw new RuntimeException(e);
         }
 
@@ -76,8 +75,6 @@ public class Network implements NetworkModelFunctions {
                         message = message.substring(message.indexOf('[') + 1, message.indexOf(']'));
                         String[] users = message.split(", ");
                         Platform.runLater(() -> chatController.refreshChatMembersList(users));
-                    } else {
-//                        Platform.runLater(() -> chatController.showError());
                     }
                 }
             } catch(IOException e) {
@@ -94,7 +91,6 @@ public class Network implements NetworkModelFunctions {
         try {
             out.writeUTF(message);
         } catch (IOException e) {
-//            logger.severe("Failed to send message...");
             throw new RuntimeException(e);
         }
     }
