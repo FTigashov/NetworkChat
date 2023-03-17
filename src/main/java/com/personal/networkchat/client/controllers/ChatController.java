@@ -106,17 +106,16 @@ public class ChatController implements Initializable, ChatActions {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        chatHistory.appendText(timeStamp);
-//        chatHistory.appendText(System.lineSeparator());
-//        chatHistory.appendText(message);
-//        chatHistory.appendText(System.lineSeparator());
-//        chatHistory.appendText(System.lineSeparator());
     }
 
     public void addServerMessage(String serverMessage) {
-        chatHistory.appendText(serverMessage);
-        chatHistory.appendText(System.lineSeparator());
-        chatHistory.appendText(System.lineSeparator());
+        String messageFormat = String.format("%s\n%s\n\n", DateFormat.getInstance().format(new Date()), serverMessage);
+        chatHistory.appendText(messageFormat);
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(userHistoryFilePath, true))) {
+            bufferedWriter.write(messageFormat);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void refreshChatMembersList(String[] users) {
