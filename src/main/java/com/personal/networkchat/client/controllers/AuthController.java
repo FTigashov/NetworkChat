@@ -45,20 +45,19 @@ public class AuthController implements AuthenticationProcess {
 
         if (authErrorMessage == null) {
             String userChatHistoryFileName = String.format("history_%s.txt", login);
-            File checkFile = new File(chatHistoryDirectory.getPath() + "\\" + userChatHistoryFileName);
-            if (checkFile.exists()) {
-                System.out.println("Файл существует!");
-            } else {
-                System.out.println("Файл не существует");
+            String fullPath = chatHistoryDirectory.getPath() + "\\" + userChatHistoryFileName;
+            File checkFile = new File(fullPath);
+            if (!checkFile.exists()) {
+//                System.out.println("Файл не существует");
                 try {
-                    BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(checkFile));
-                    System.out.println("Файл создан!");
+                    BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(fullPath, true));
+//                    System.out.println("Файл создан!");
                     bufferedOutputStream.close();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }
-            clientApp.openChatDialog(network.getFullname());
+            clientApp.openChatDialog(network.getFullname(), checkFile);
         } else {
             if (authErrorMessage.equals("user is already busy")) {
                 showError(USER_IS_BUSY);

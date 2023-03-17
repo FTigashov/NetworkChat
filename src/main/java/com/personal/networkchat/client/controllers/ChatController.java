@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+import java.io.*;
 import java.net.URL;
 import java.text.DateFormat;
 import java.util.*;
@@ -74,6 +75,7 @@ public class ChatController implements Initializable, ChatActions {
     }
 
     private Network network;
+    private File userHistoryFilePath;
 
     public void setNetwork(Network network) {
         this.network = network;
@@ -97,12 +99,18 @@ public class ChatController implements Initializable, ChatActions {
 
     public void addMessage(String message) {
         String timeStamp = DateFormat.getInstance().format(new Date());
-
-        chatHistory.appendText(timeStamp);
-        chatHistory.appendText(System.lineSeparator());
-        chatHistory.appendText(message);
-        chatHistory.appendText(System.lineSeparator());
-        chatHistory.appendText(System.lineSeparator());
+        String messageFormat = String.format("%s\n%s\n\n", timeStamp, message);
+        chatHistory.appendText(messageFormat);
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(userHistoryFilePath, true))) {
+            bufferedWriter.write(messageFormat);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+//        chatHistory.appendText(timeStamp);
+//        chatHistory.appendText(System.lineSeparator());
+//        chatHistory.appendText(message);
+//        chatHistory.appendText(System.lineSeparator());
+//        chatHistory.appendText(System.lineSeparator());
     }
 
     public void addServerMessage(String serverMessage) {
@@ -142,5 +150,24 @@ public class ChatController implements Initializable, ChatActions {
                 "using a database has been added,\npassword hashing " +
                 "has also been added\nfor greater security.");
         showInfoAlert.show();
+    }
+
+    public void setHistory(File userHistoryFileName) {
+        userHistoryFilePath = userHistoryFileName;
+
+        if (userHistoryFilePath.exists() && userHistoryFileName.isFile()) {
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new FileReader(userHistoryFilePath));
+                String currentLine;
+                while ((currentLine = bufferedReader.readLine()) != null) {
+                    chatHistory.appendText(currentLine);
+                    chatHistory.appendText(System.lineSeparator());
+                }
+                chatHistory.appendText(System.lineSeparator());
+                bufferedReader.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }
