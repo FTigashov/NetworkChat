@@ -26,6 +26,7 @@ public class ClientHandler extends LoggingConfig {
     private static final String LIST_OF_CHAT_MEMBERS = "/list_of_chat_members"; // + list of chat members
 
     private ServerConfiguration serverConfiguration;
+    private AuthService authService = serverConfiguration.getAuthService();
     private Socket clientSocket;
     private DataOutputStream out;
     private DataInputStream in;
@@ -78,10 +79,21 @@ public class ClientHandler extends LoggingConfig {
                 }
             } else if (message.startsWith(REG_CMD_PREFIX)) {
                 boolean isSuccessReg = processRegistration(message);
+                if (isSuccessReg) {
+                    admin.info("New user is registered ");
+                    admin_console.info("New user is registered ");
+                    break;
+                } else {
+                    out.writeUTF(REG_ERROR_CMD_PREFIX + " this user is already exists");
+                    admin.error(String.format("User with this login is already exists"));
+                    admin_console.error(String.format("User with this login is already exists"));
+                }
             }
         }
     }
 
+
+    // Copy–Paste
     private boolean processRegistration(String message) throws IOException {
         String[] parts = message.split("\\s+", 5);
         if (parts.length != 5) out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | registration error");
@@ -90,31 +102,25 @@ public class ClientHandler extends LoggingConfig {
         String login = parts[3];
         String password = parts[4];
 
-        AuthService authService = serverConfiguration.getAuthService();
         authService.openConnection();
+        
         User receivedNewUser = authService.insertNewUser(new User(name, surname, login, password));
         if (receivedNewUser != null) {
             fullname = String.format("%s %s", receivedNewUser.getName(), receivedNewUser.getSurname());
             out.writeUTF(REG_SUCCESS_CMD_PREFIX + " " + fullname);
-            admin.info("New user " + fullname + " is registered ");
-            admin_console.info("New user " + fullname + " is registered ");
             authService.closeConnection();
             return true;
-        } else {
-            out.writeUTF(REG_ERROR_CMD_PREFIX + " this user is already exists");
-            admin.error(String.format("this user %s is already exists", login));
-            admin_console.error(String.format("this user %s is already exists", login));
         }
         return false;
     }
 
+    // Copy–Paste
     private boolean processAuthentication(String message) throws IOException {
         String[] parts = message.split("\\s+", 3);
         if (parts.length != 3) out.writeUTF(AUTH_ERROR_CMD_PREFIX + " | authentication error");
         String login = parts[1];
         String password = parts[2];
 
-        AuthService authService = serverConfiguration.getAuthService();
         authService.openConnection();
         User receivedUser = authService.getUserNameByLoginAndPassword(login, password);
         if (receivedUser != null) {
@@ -153,9 +159,9 @@ public class ClientHandler extends LoggingConfig {
                 return;
             } else if (message.startsWith(PRIVATE_MSG_CMD_PREFIX)) {
                 String[] msg_parts = message.split("\\s+", 4);
-                String user_fullname = msg_parts[1] + " " + msg_parts[2];
-                String user_msg = msg_parts[3];
-                serverConfiguration.privateMessage(this, user_fullname, user_msg);
+                String userFullname = msg_parts[1] + " " + msg_parts[2];
+                String userMessage = msg_parts[3];
+                serverConfiguration.privateMessage(this, userFullname, userMessage);
             } else {
                 serverConfiguration.broadcastMessage(message, this);
             }

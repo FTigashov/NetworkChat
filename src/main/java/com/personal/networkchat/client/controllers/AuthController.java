@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
+import java.io.*;
+
 public class AuthController implements AuthenticationProcess {
     @FXML
     private Button authBtn;
@@ -22,6 +24,8 @@ public class AuthController implements AuthenticationProcess {
 
     private Network network;
     private ClientApp clientApp;
+
+    private File chatHistoryDirectory = new File("src/main/resources/chat_history");
 
     private final String EMPTY_FIELDS_ERROR = "emptyFields";
     private final String ACCOUNT_ERROR = "authError";
@@ -40,7 +44,20 @@ public class AuthController implements AuthenticationProcess {
         String authErrorMessage = network.sendAuthMessage(login, password);
 
         if (authErrorMessage == null) {
-            clientApp.openChatDialog(network.getFullname());
+            String userChatHistoryFileName = String.format("history_%s.txt", login);
+            String fullPath = chatHistoryDirectory.getPath() + "\\" + userChatHistoryFileName;
+            File checkFile = new File(fullPath);
+            if (!checkFile.exists()) {
+//                System.out.println("Файл не существует");
+                try {
+                    BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(fullPath, true));
+//                    System.out.println("Файл создан!");
+                    bufferedOutputStream.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            clientApp.openChatDialog(network.getFullname(), checkFile);
         } else {
             if (authErrorMessage.equals("user is already busy")) {
                 showError(USER_IS_BUSY);
