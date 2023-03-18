@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class ClientApp extends Application {
@@ -91,10 +92,11 @@ public class ClientApp extends Application {
         launch();
     }
 
-    public void openChatDialog(String userFullName) {
+    public void openChatDialog(String userFullName, File userHistoryFileName) {
         authStage.close();
         regStage.close();
         chatController.setUserFullName(userFullName);
+        chatController.setHistory(userHistoryFileName);
         network.waitMessage(chatController);
         primaryStage.show();
     }

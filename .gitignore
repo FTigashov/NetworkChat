@@ -30,6 +30,7 @@ log4j.properties
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
+/src/main/resources/chat_history/
 /dist/
 /nbdist/
 /.nb-gradle/
