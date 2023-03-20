@@ -1195,3 +1195,20 @@
 2023-03-20 14:26:50 INFO   admin:66 - Waiting for client...
 2023-03-20 14:26:58 INFO   admin:130 - User Ivan Ivanov is connected
 2023-03-20 14:26:58 INFO   admin:71 - /auth_success | authentication success
+2023-03-20 14:29:18 INFO   admin:52 - Server started
+2023-03-20 14:29:18 INFO   admin:66 - Waiting for client...
+2023-03-20 14:29:26 INFO   admin:69 - Client is connected
+2023-03-20 14:31:30 INFO   admin:52 - Server started
+2023-03-20 14:31:30 INFO   admin:66 - Waiting for client...
+2023-03-20 14:31:35 INFO   admin:69 - Client is connected
+2023-03-20 14:32:11 INFO   admin:52 - Server started
+2023-03-20 14:32:11 INFO   admin:66 - Waiting for client...
+2023-03-20 14:32:16 INFO   admin:69 - Client is connected
+2023-03-20 14:33:16 INFO   admin:52 - Server started
+2023-03-20 14:33:16 INFO   admin:66 - Waiting for client...
+2023-03-20 14:33:24 INFO   admin:69 - Client is connected
+2023-03-20 14:33:24 INFO   admin:66 - Waiting for client...
+2023-03-20 14:33:34 INFO   admin:138 - User Ivan Ivanov is connected
+2023-03-20 14:33:34 INFO   admin:74 - /auth_success | authentication success
+2023-03-20 14:33:40 FATAL  admin:52 - class java.net.SocketException null Connection reset
+2023-03-20 14:33:40 INFO   admin:55 - Ivan Ivanov left the chat

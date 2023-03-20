@@ -26,7 +26,7 @@ public class ClientHandler extends LoggingConfig {
     private static final String LIST_OF_CHAT_MEMBERS = "/list_of_chat_members"; // + list of chat members
 
     private ServerConfiguration serverConfiguration;
-    private AuthService authService = serverConfiguration.getAuthService();
+    private AuthService authService;
     private Socket clientSocket;
     private DataOutputStream out;
     private DataInputStream in;
@@ -36,6 +36,7 @@ public class ClientHandler extends LoggingConfig {
     public ClientHandler(ServerConfiguration serverConfiguration, Socket clientSocket) {
         this.serverConfiguration = serverConfiguration;
         this.clientSocket = clientSocket;
+        authService = serverConfiguration.getAuthService();
     }
 
     public void handle() throws IOException {
