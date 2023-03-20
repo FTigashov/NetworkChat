@@ -20,12 +20,6 @@ public class ClientApp extends Application {
     private Stage regStage;
     private ChatController chatController;
 
-    //Класс сообщения
-    //* отправитель
-    //* дата отправки
-    //* текст сообщения
-    //
-    //Список<Класс сообщения>
 
     @Override
     public void start(Stage stage) throws IOException {
