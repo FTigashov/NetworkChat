@@ -1,6 +1,6 @@
 package com.personal.annotations;
 
-public class MyTest {
+public class TestClass {
 
     @BeforeSuite
     void init() {
