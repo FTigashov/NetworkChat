@@ -60,7 +60,6 @@ public class ClientHandler extends LoggingConfig {
                 }
                 e.printStackTrace();
             }
-
         }).start();
     }
 

@@ -1212,3 +1212,11 @@
 2023-03-20 14:33:34 INFO   admin:74 - /auth_success | authentication success
 2023-03-20 14:33:40 FATAL  admin:52 - class java.net.SocketException null Connection reset
 2023-03-20 14:33:40 INFO   admin:55 - Ivan Ivanov left the chat
+2023-04-13 17:19:01 INFO   admin:52 - Server started
+2023-04-13 17:19:01 INFO   admin:66 - Waiting for client...
+2023-04-13 17:19:07 INFO   admin:69 - Client is connected
+2023-04-13 17:19:07 INFO   admin:66 - Waiting for client...
+2023-04-13 17:19:14 INFO   admin:137 - User Ivan Ivanov is connected
+2023-04-13 17:19:14 INFO   admin:73 - /auth_success | authentication success
+2023-04-13 17:19:20 FATAL  admin:51 - class java.net.SocketException null Connection reset
+2023-04-13 17:19:20 INFO   admin:54 - Ivan Ivanov left the chat
